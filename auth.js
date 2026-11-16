@@ -129,33 +129,136 @@
     };
   }
 
-  function wireLogin() {
-    var g = $("gBtn"), f = $("mailForm"), redirect = location.origin + location.pathname;
+  /* A message with an action button, e.g. "Resend confirmation email". */
+  function msgAction(text, kind, label, fn) {
+    msg(text, kind);
+    var b = document.createElement("button"); b.type = "button"; b.className = "linkbtn"; b.textContent = label;
+    b.onclick = fn; $("loginMsg").appendChild(document.createTextNode(" ")); $("loginMsg").appendChild(b);
+  }
+
+  var MIN_PW = 8;
+  var redirect = location.origin + location.pathname;
+
+  /* Turn Supabase's error text into plain guidance. */
+  function friendly(err) {
+    var m = String((err && err.message) || "").toLowerCase();
+    if (/rate limit|too many|security purposes/.test(m)) return "Too many attempts or emails in a short time. Wait a few minutes and try again.";
+    if (/invalid login credentials/.test(m)) return "That email and password don’t match. Try again, or use “Forgot password?”.";
+    if (/password should be|password is too short|weak password/.test(m)) return "Choose a password with at least " + MIN_PW + " characters.";
+    if (/same.*password|different from the old/.test(m)) return "Choose a password that’s different from your current one.";
+    if (/network|fetch/.test(m)) return "Couldn’t reach the sign-in service. Check your connection and try again.";
+    return (err && err.message) || "Something went wrong. Try again.";
+  }
+
+  /* Sign-in card modes: signin, signup, forgot, reset (set a new password after a reset link). */
+  var MODES = {
+    signin: { h: "Sign in to start learning", lede: "Use your work email and password. Your progress and scores are saved to your profile so your lead can follow along.", btn: "Sign in", pass: true, pass2: false, email: true },
+    signup: { h: "Create your account", lede: "Use your work email and choose a password. We’ll email you a link to confirm the address once; after that you sign in with your email and password.", btn: "Create account", pass: true, pass2: true, email: true },
+    forgot: { h: "Reset your password", lede: "Enter your work email and we’ll send you a link to choose a new password. Signed in before with an email link? Use this to set a password for the first time.", btn: "Email me a reset link", pass: false, pass2: false, email: true },
+    reset:  { h: "Choose a new password", lede: "Enter a new password for your account. You’ll use it with your work email from now on.", btn: "Save password and continue", pass: true, pass2: true, email: false }
+  };
+  var mode = "signin";
+  function setMode(m, keepMsg) {
+    mode = m; var M = MODES[m];
+    $("loginH").textContent = M.h;
+    document.querySelector("#login .lede").textContent = M.lede;
+    $("pwEmailF").hidden = !M.email;
+    $("pwPassF").hidden = !M.pass;
+    $("pwPass2F").hidden = !M.pass2;
+    $("pwHint").hidden = !M.pass2;
+    $("pwPassL").textContent = m === "reset" ? "New password" : "Password";
+    $("pwPass").autocomplete = M.pass2 ? "new-password" : "current-password";
+    $("pwPass").value = ""; $("pwPass2").value = "";
+    $("pwSubmit").textContent = M.btn;
+    $("pwForgot").hidden = m !== "signin";
+    $("pwSwitch").hidden = m === "reset";
+    $("pwSwitch").textContent = m === "signin" ? "New here? Create an account" : "Back to sign in";
+    if (!keepMsg) msg("");
+  }
+
+  async function resendConfirm(email) {
+    var res = await SB.auth.resend({ type: "signup", email: email, options: { emailRedirectTo: redirect } });
+    if (res.error) msg(friendly(res.error), "err");
+    else msg("Confirmation email sent to " + email + ". Open the link in this browser.", "ok");
+  }
+
+  function wireLogin(startMode) {
+    var g = $("gBtn"), f = $("pwForm");
     g.hidden = !(C.AUTH && C.AUTH.google);
-    f.hidden = !(C.AUTH && C.AUTH.emailLink);
+    f.hidden = !(C.AUTH && C.AUTH.password);
     g.onclick = async function () {
       msg("");
       var opts = { redirectTo: redirect };
       if (domains.length === 1) opts.queryParams = { hd: domains[0] };
       var res = await SB.auth.signInWithOAuth({ provider: "google", options: opts });
-      if (res.error) msg(res.error.message, "err");
+      if (res.error) msg(friendly(res.error), "err");
     };
+    $("pwSwitch").onclick = function () { setMode(mode === "signin" ? "signup" : "signin"); };
+    $("pwForgot").onclick = function () { setMode("forgot"); };
+    setMode(startMode || "signin", true);
+
     f.onsubmit = async function (e) {
       e.preventDefault();
-      var email = $("mailIn").value.trim();
-      if (!domainOk(email)) { msg("Use your " + domains.join(" or ") + " email address.", "err"); return; }
-      var b = f.querySelector("button"); b.disabled = true;
-      var res = await SB.auth.signInWithOtp({ email: email, options: { emailRedirectTo: redirect, shouldCreateUser: true } });
-      b.disabled = false;
-      if (res.error) msg(res.error.message, "err");
-      else msg("Check your inbox for a sign-in link, and open it in this same browser.", "ok");
+      var email = $("pwEmail").value.trim(), pw = $("pwPass").value, pw2 = $("pwPass2").value;
+      var M = MODES[mode];
+      if (M.email) {
+        if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { msg("Enter your work email address.", "err"); $("pwEmail").focus(); return; }
+        if (!domainOk(email)) { msg("Use your " + domains.map(function (d) { return "@" + d; }).join(" or ") + " email address.", "err"); $("pwEmail").focus(); return; }
+      }
+      if (M.pass && !pw) { msg("Enter your password.", "err"); $("pwPass").focus(); return; }
+      if (M.pass2) {
+        if (pw.length < MIN_PW) { msg("Choose a password with at least " + MIN_PW + " characters.", "err"); $("pwPass").focus(); return; }
+        if (pw !== pw2) { msg("The two passwords don’t match.", "err"); $("pwPass2").focus(); return; }
+      }
+      var b = $("pwSubmit"); b.disabled = true; msg("");
+      try {
+        var res;
+        if (mode === "signin") {
+          res = await SB.auth.signInWithPassword({ email: email, password: pw });
+          if (res.error) {
+            if (/not confirmed/i.test(res.error.message || "")) msgAction("Confirm your email first: open the link we sent to " + email + ".", "err", "Resend confirmation email", function () { resendConfirm(email); });
+            else msg(friendly(res.error), "err");
+            return;
+          }
+          location.reload(); return;
+        }
+        if (mode === "signup") {
+          res = await SB.auth.signUp({ email: email, password: pw, options: { emailRedirectTo: redirect } });
+          if (res.error) {
+            if (/already registered|already exists/i.test(res.error.message || "")) { setMode("signin", true); $("pwEmail").value = email; msg("You already have an account. Sign in, or use “Forgot password?”.", "err"); }
+            else msg(friendly(res.error), "err");
+            return;
+          }
+          if (res.data && res.data.session) { location.reload(); return; }
+          var u = res.data && res.data.user;
+          if (u && Array.isArray(u.identities) && u.identities.length === 0) { setMode("signin", true); $("pwEmail").value = email; msg("You already have an account. Sign in, or use “Forgot password?”.", "err"); return; }
+          setMode("signin", true); $("pwEmail").value = email;
+          msgAction("Almost done: we’ve emailed a confirmation link to " + email + ". Open it in this browser and you’ll be signed in. Next time, sign in here with your email and password.", "ok", "Resend email", function () { resendConfirm(email); });
+          return;
+        }
+        if (mode === "forgot") {
+          res = await SB.auth.resetPasswordForEmail(email, { redirectTo: redirect + "?reset=1" });
+          if (res.error) { msg(friendly(res.error), "err"); return; }
+          msg("If there’s an account for " + email + ", we’ve emailed a link to choose a new password. Open it in this browser.", "ok");
+          return;
+        }
+        if (mode === "reset") {
+          res = await SB.auth.updateUser({ password: pw });
+          if (res.error) { msg(friendly(res.error), "err"); return; }
+          location.replace(location.pathname + location.hash); return;
+        }
+      } catch (err) {
+        msg(friendly(err), "err");
+      } finally {
+        b.disabled = false;
+      }
     };
   }
 
   async function boot() {
     brand();
     if (!configured || !window.supabase) {
-      showLogin(); $("gBtn").hidden = true; $("mailForm").hidden = true;
+      showLogin(); $("gBtn").hidden = true; $("pwForm").hidden = true;
       msg("This copy isn’t connected yet. Add your Supabase project URL and anon key to config.js.", "err");
       return;
     }
@@ -164,13 +267,24 @@
     });
     var params = new URLSearchParams(location.search);
     var urlError = params.get("error_description");
+    var hadCode = params.has("code"), isReset = params.get("reset") === "1";
     var got = await SB.auth.getSession();
     var session = got.data && got.data.session;
-    if (params.has("code") || urlError) history.replaceState(null, "", location.pathname + location.hash);
-    if (!session) { showLogin(); wireLogin(); if (urlError) msg(urlError, "err"); return; }
+    if (hadCode || urlError || isReset) history.replaceState(null, "", location.pathname + location.hash);
+    if (!session) {
+      showLogin(); wireLogin(isReset ? "forgot" : "signin");
+      if (urlError || hadCode) msg(isReset
+        ? "That reset link has expired or was opened in a different browser. Request a new one below."
+        : "That link has expired or was opened in a different browser. If you just confirmed your email, sign in with your email and password.", "err");
+      return;
+    }
     if (!domainOk(session.user.email)) {
       await SB.auth.signOut(); showLogin(); wireLogin();
-      msg("Sign in with your " + domains.join(" or ") + " account.", "err"); return;
+      msg("Sign in with your " + domains.map(function (d) { return "@" + d; }).join(" or ") + " email address.", "err"); return;
+    }
+    if (isReset) {
+      /* Arrived from a password-reset email: ask for the new password before opening the Academy. */
+      showLogin(); wireLogin("reset"); return;
     }
     SESSION = session;
     var caps = { user: makeUser(), db: makeDb(), downloads: makeDownloads(), signins: makeSignins() };

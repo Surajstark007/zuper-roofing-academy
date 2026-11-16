@@ -12,13 +12,13 @@ window.ACADEMY_CONFIG = {
   // public.allowed_email() in supabase/schema.sql.
   ALLOWED_DOMAINS: ["zuper.co"],
 
-  // Sign-in methods to show. Enable the matching providers in
+  // Sign-in methods to show: email + password, and/or Google. Enable the matching providers in
   // Supabase → Authentication → Providers.
-  AUTH: { google: false, emailLink: true },
+  AUTH: { google: false, password: true },
 
   // Link for "Slide deck" in the header. Leave "" to hide it.
   DECK_URL: "https://claude.ai/artifact/8ZqwWuvMtyYwyAfTWGGeUQ",
 
   // Path to your logo, e.g. "assets/zuper-logo.svg". Leave "" to show the placeholder.
-  LOGO_SRC: ""
+  LOGO_SRC: "assets/zuper-logo.webp"
 };

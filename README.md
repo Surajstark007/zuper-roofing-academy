@@ -26,10 +26,10 @@ A static website (no build step) that uses **Supabase** for sign-in and for stor
 ### 2. Turn on sign-in
 In **Authentication → URL Configuration**:
 - **Site URL**: where you'll host the Academy, e.g. `https://academy.zuper.co`.
-- **Redirect URLs**: add the same URL, plus `http://localhost:3000` for local testing.
+- **Redirect URLs**: add the same URL and the same URL followed by `/**` (so password-reset links can return with `?reset=1`), plus `http://localhost:3000` and `http://localhost:3000/**` for local testing.
 
 In **Authentication → Providers**, enable one or both:
-- **Email**: learners get a one-time sign-in link. No setup beyond enabling it. For real use, configure a custom SMTP sender under Authentication → Emails, because Supabase's built-in sender is rate-limited.
+- **Email** (email + password): learners create an account with their work email and a password (at least 8 characters; set **Minimum password length** to 8 under Authentication → Providers → Email), confirm the address once from an email, then sign in with email and password. "Forgot password?" emails a reset link. Keep **Confirm email** turned on: it's what proves someone owns the work address they signed up with. For real use, configure a custom SMTP sender under Authentication → Emails, because Supabase's built-in sender is rate-limited to a few emails an hour.
 - **Google**: create an OAuth client in Google Cloud Console (Web application). Add the callback URL Supabase shows you as an authorised redirect URI, then paste the client ID and secret into Supabase. The site asks Google for your Workspace domain only.
 
 Turn off whichever method you don't use in `config.js` (`AUTH`).
@@ -37,7 +37,7 @@ Turn off whichever method you don't use in `config.js` (`AUTH`).
 ### 3. Connect the site
 Open `config.js` and fill in:
 - `SUPABASE_URL` and `SUPABASE_ANON_KEY` from **Project Settings → API**. The anon key is designed to be public; the access rules protect the data.
-- `LOGO_SRC`: e.g. `assets/zuper-logo.svg` after you copy the logo into `assets/`.
+- `LOGO_SRC`: currently `assets/zuper-logo.webp`. It's shown on a small white rounded tile so it reads in both light and dark themes.
 - `DECK_URL`: the slide deck link. The current claude.ai link only opens for people you've shared the deck with. You can download the deck as PowerPoint or PDF, put it in `assets/`, and point this at it instead.
 
 ### 4. Test locally
