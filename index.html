@@ -129,6 +129,9 @@ kbd{font-family:var(--bf);font-size:13px;border:1px solid var(--line);border-bot
 .reftable{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;font-size:15px}
 .reftable th{background:var(--surface2);text-align:left;padding:12px 16px;font-size:13px;color:var(--muted);font-weight:600}
 .reftable td{padding:12px 16px;border-top:1px solid var(--line);vertical-align:top}
+.rvq td{vertical-align:top}.rvqq{margin:4px 0 8px;font-weight:600;color:var(--ink)}
+.rvopts{margin:0;padding-left:20px;display:grid;gap:4px;font-size:14.5px;color:var(--muted)}.rvopts li.ok{color:var(--ink);font-weight:600}
+.rvsrc{margin-top:8px}.rvsrc a{color:var(--ink)}.rvnow{color:var(--muted)}.rvh3{font-size:20px;margin:28px 0 12px}.rvlede{font-size:16px;margin:0 0 16px}
 .path{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13.5px}
 .gloss{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
 .gloss div{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:10px;padding:14px 16px}
@@ -354,7 +357,7 @@ body.gated:has(#login:not([hidden])) .bootmsg{display:none}
 </section>
 <header class="top"><div class="wrap topin">
   <a class="brand" href="#home" aria-label="Zuper Roofing Academy home"><span class="logo" id="logo"><span class="logo-slot" title="Placeholder for the official Zuper logo">ZUPER LOGO</span></span><span class="brandtxt">Roofing Academy</span></a>
-  <nav class="topnav" aria-label="Main"><a href="#home" data-nav="home">Home</a><a href="#training" data-nav="training">Training</a><a href="#cases" data-nav="cases">Case studies</a><a href="#reference" data-nav="reference">Reference</a><a href="#finish" data-nav="finish">My progress</a><a href="#team" data-nav="team" id="teamNav" hidden>Team dashboard</a><a href="#reference" data-deck target="_blank" rel="noopener">Slide deck ↗</a></nav>
+  <nav class="topnav" aria-label="Main"><a href="#home" data-nav="home">Home</a><a href="#training" data-nav="training">Training</a><a href="#cases" data-nav="cases">Case studies</a><a href="#reference" data-nav="reference">Reference</a><a href="#finish" data-nav="finish">My progress</a><a href="#team" data-nav="team" id="teamNav" hidden>Team dashboard</a><a href="#review" data-nav="review" id="reviewNav" hidden>Content review</a><a href="#reference" data-deck target="_blank" rel="noopener">Slide deck ↗</a></nav>
   <div class="topprog"><span id="topMeter" class="topmeter"></span><span class="sync" id="sync" role="status"></span><span class="whoami" id="whoami"></span><button type="button" class="linkbtn" id="signOut" hidden>Sign out</button></div>
 </div></header>
 <div class="shell">
@@ -701,11 +704,11 @@ function roofSVG(cur,big){
 const countDone=()=>PARTS.filter(p=>store.done[p.n]).length;
 const caseDone=()=>CASES.filter(c=>store.cases[c.n]!=null).length;
 
-function paintTeamNav(){const a=document.getElementById("teamNav");if(a)a.hidden=!ME.canEdit;}
-function curView(){const h=(location.hash||"").replace("#","");return /^part-[1-6]$/.test(h)||/^case-[1-4]$/.test(h)||["cases","finish","training","reference","team"].includes(h)?h:"home";}
+function paintTeamNav(){["teamNav","reviewNav"].forEach(id=>{const a=document.getElementById(id);if(a)a.hidden=!ME.canEdit;});}
+function curView(){const h=(location.hash||"").replace("#","");return /^part-[1-6]$/.test(h)||/^case-[1-4]$/.test(h)||["cases","finish","training","reference","team","review"].includes(h)?h:"home";}
 function renderRail(view){
   const cur=view.startsWith("part-")?+view.slice(5):0;
-  document.body.classList.toggle("wide",view==="home"||view==="reference"||view==="team");
+  document.body.classList.toggle("wide",view==="home"||view==="reference"||view==="team"||view==="review");
   const navKey=view.startsWith("part-")?"training":view.startsWith("case-")?"cases":view;
   document.querySelectorAll(".topnav a[data-nav]").forEach(a=>{if(a.dataset.nav===navKey)a.setAttribute("aria-current","page");else a.removeAttribute("aria-current");});
   const tot=PARTS.length+CASES.length,got=countDone()+caseDone();
@@ -849,6 +852,42 @@ const REF={
  rules:[["10DLC on day one","SMS registration is the most common go-live blocker."],["Keep a wishlist","Park custom asks until after go-live."],["Migrate by source","JobNimbus: all jobs. Other CRMs: completed jobs, then the delta."],["Margin or markup?","Ask before any pricing formula."],["Test with real reports","Real measurements, never made-up numbers."],["Zero means gone","A blank or 0 quantity drops the item."],["Edits don’t travel back","Formula changes don’t update sent proposals."],["One pipeline at a time","Go live in stages."]],
  res:[["docs.zuper.co","Help documentation for every module"],["updates.zuper.co","Release notes: what’s new and what’s live"],["developers.zuper.co","API reference for integrations"],["support@zuper.co","Product support"],["Zuper Essentials for Roofing","Weekly community session, Thursdays 11–12 CT"]]
 };
+/* ---------------- content review (staff only; data in review.js, loaded on demand) ---------------- */
+let REVIEW_LOAD=null;
+function loadReview(){
+  if(window.ACADEMY_REVIEW)return Promise.resolve(window.ACADEMY_REVIEW);
+  if(!REVIEW_LOAD)REVIEW_LOAD=new Promise((res,rej)=>{const s=document.createElement("script");s.src="review.js?v=1";s.onload=()=>window.ACADEMY_REVIEW?res(window.ACADEMY_REVIEW):rej(new Error("empty"));s.onerror=()=>{REVIEW_LOAD=null;rej(new Error("load"));};document.head.appendChild(s);});
+  return REVIEW_LOAD;
+}
+function rvSrc(list){return (list||[]).map(([t,u])=>`<a href="${esc(u)}" target="_blank" rel="noopener">${esc(t)}</a>`).join(", ");}
+function rvQs(rows){return `<div class="tscroll"><table class="reftable rvq"><thead><tr><th scope="col" style="width:52px">#</th><th scope="col">Question and options</th><th scope="col" style="width:28%">Shown after answering</th></tr></thead><tbody>${rows.map(r=>`<tr><td><b>${esc(r.id)}</b></td><td><span class="sub">${esc(r.part)}</span><p class="rvqq">${esc(r.q)}</p><ol class="rvopts">${r.o.map((o,i)=>`<li class="${i===r.a?"ok":""}">${esc(o)}${i===r.a?' <span class="chip c-ok">Answer</span>':""}</li>`).join("")}</ol></td><td>${esc(r.e)}<span class="sub rvsrc">Source: ${rvSrc(r.src)}</span></td></tr>`).join("")}</tbody></table></div>`;}
+function renderReview(){
+  if(!ME.ready){main.innerHTML=`<section class="band"><div class="wrap"><p class="lede">Checking your access…</p></div></section>`;return;}
+  if(!ME.canEdit){main.innerHTML=`<section class="band"><div class="wrap"><header class="phead"><p class="pnum">Content review</p><h1>For the Academy team</h1><p class="lede">This page is for leads and HR on the staff list.</p></header><a class="btn" href="#home">Back to home</a></div></section>`;return;}
+  main.innerHTML=`<section class="band" style="padding-top:44px"><div class="wrap"><p class="lede">Loading the proposed changes…</p></div></section>`;
+  loadReview().then(R=>{
+    if(curView()!=="review")return;
+    const secs=[["rv-a","A. Corrections"],["rv-b","B. Part questions"],["rv-c","C. Case questions"],["rv-d","D. Reference"],["rv-open","To confirm"]];
+    main.innerHTML=`<section class="band" style="padding-top:44px"><div class="wrap">
+    <header class="phead"><p class="pnum">Content review · staff only</p><h1>Proposed updates from the Zuper docs</h1><p class="lede">${esc(R.intro)}</p></header>
+    <p class="note ok"><b>Already decided:</b> ${R.decided.map(esc).join(" · ")}. <span class="sub">Sources read on ${esc(R.asOf)}.</span></p>
+    <ul class="refnav">${secs.map(([id,t])=>`<li><button type="button" data-jump="${id}">${t}</button></li>`).join("")}</ul>
+    <section class="refsec" id="rv-a"><h2>A. Corrections to existing text</h2><div class="tscroll"><table class="reftable"><thead><tr><th scope="col" style="width:52px">#</th><th scope="col" style="width:22%">Where</th><th scope="col" style="width:22%">Now</th><th scope="col">Change to</th></tr></thead><tbody>${R.corrections.map(r=>`<tr><td><b>${esc(r.id)}</b></td><td>${esc(r.where)}</td><td class="rvnow">${esc(r.now)}</td><td>${esc(r.next)}<span class="sub rvsrc">Source: ${rvSrc(r.src)}</span></td></tr>`).join("")}</tbody></table></div></section>
+    <section class="refsec" id="rv-b"><h2>B. New questions for Parts 2–6</h2><p class="lede rvlede">${R.partQs.length} questions, each added to the end of its part’s knowledge check. Existing questions stay; Part 1 (trade basics) gets none.</p>${rvQs(R.partQs)}</section>
+    <section class="refsec" id="rv-c"><h2>C. New case study questions</h2><p class="lede rvlede">${R.caseQs.length} questions added to the four existing companies; their stories stay the same.</p>${rvQs(R.caseQs)}</section>
+    <section class="refsec" id="rv-d"><h2>D. Reference page additions</h2>
+     <h3 class="rvh3">Settings cheat sheet: new rows</h3><div class="tscroll"><table class="reftable"><thead><tr><th scope="col" style="width:30%">What you want to change</th><th scope="col">Where it lives</th><th scope="col" style="width:24%">Source</th></tr></thead><tbody>${R.settings.map(([a,b,s])=>`<tr><td><b>${esc(a)}</b></td><td class="path">${esc(b)}</td><td>${rvSrc([s])}</td></tr>`).join("")}</tbody></table></div><p class="tcount">${esc(R.settingsNote)}</p>
+     <h3 class="rvh3">Limits &amp; numbers (new section)</h3><div class="tscroll"><table class="reftable"><thead><tr><th scope="col" style="width:34%">Limit</th><th scope="col">Value</th><th scope="col" style="width:24%">Source</th></tr></thead><tbody>${R.limits.map(([a,b,s])=>`<tr><td><b>${esc(a)}</b></td><td>${esc(b)}</td><td>${rvSrc([s])}</td></tr>`).join("")}</tbody></table></div>
+     <h3 class="rvh3">Glossary: new terms</h3><dl class="gloss">${R.glossary.map(([a,b,s])=>`<div><dt>${esc(a)}</dt><dd>${esc(b)} <span class="sub rvsrc">${rvSrc([s])}</span></dd></div>`).join("")}</dl>
+     <h3 class="rvh3">Resources: new links</h3><div class="tscroll"><table class="reftable"><tbody>${R.resources.map(([a,b,u])=>`<tr><td style="width:34%"><a href="${esc(u)}" target="_blank" rel="noopener"><b>${esc(a)}</b></a></td><td>${esc(b)}</td></tr>`).join("")}</tbody></table></div><p class="tcount">${esc(R.resourcesNote)}</p>
+    </section>
+    <section class="refsec" id="rv-open"><h2>Not changing, and points to confirm</h2><p class="lede rvlede">${esc(R.keep)}</p><div class="tscroll"><table class="reftable"><tbody>${R.open.map(([a,b])=>`<tr><td style="width:26%"><b>${esc(a)}</b></td><td>${esc(b)}</td></tr>`).join("")}</tbody></table></div></section>
+    <p class="tip">Only staff on the Supabase staff list see this page. To approve or change anything, tell Claude.</p>
+    </div></section>`;
+    main.querySelector(".refnav").onclick=e=>{const b=e.target.closest("[data-jump]");if(!b)return;const t=document.getElementById(b.dataset.jump);if(t){t.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});t.setAttribute("tabindex","-1");t.focus({preventScroll:true});}};
+  }).catch(()=>{if(curView()==="review")main.innerHTML=`<section class="band"><div class="wrap"><p class="note warn">The review couldn’t be loaded. Refresh to try again.</p></div></section>`;});
+}
+
 function renderReference(){
   const secs=[["ref-practices","How we advise clients"],["ref-migration","Migration"],["ref-settings","Settings cheat sheet"],["ref-pipelines","The four pipelines"],["ref-gloss","Glossary"],["ref-rules","Golden rules"],["ref-res","Resources"]];
   main.innerHTML=`<section class="band" style="padding-top:48px"><div class="wrap">
@@ -1097,7 +1136,7 @@ async function exportCsv(){
 }
 
 function renderView(view){
-  if(view==="home")renderHome();else if(view==="training")renderTraining();else if(view==="reference")renderReference();else if(view==="team")renderTeam();else if(view==="finish")renderFinish();else if(view==="cases")renderCases();else if(view.startsWith("case-"))renderCase(+view.slice(5));else renderPart(+view.slice(5));
+  if(view==="home")renderHome();else if(view==="training")renderTraining();else if(view==="reference")renderReference();else if(view==="team")renderTeam();else if(view==="review")renderReview();else if(view==="finish")renderFinish();else if(view==="cases")renderCases();else if(view.startsWith("case-"))renderCase(+view.slice(5));else renderPart(+view.slice(5));
 }
 function route(){
   const view=curView();
