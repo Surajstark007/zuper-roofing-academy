@@ -1,0 +1,1059 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Zuper Roofing Academy</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ctext y=%22.9em%22 font-size=%2290%22%3E%F0%9F%8F%A0%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f5f7f8;--surface:#ffffff;--surface2:#eef2f4;--ink:#101b25;--muted:#55626d;--line:#dbe2e6;
+  --accent:#c2410c;--accent-ink:#ffffff;--accent-soft:#fdeee6;--shingle:#33424f;--course-empty:#e1e6e9;
+  --ok:#1d7446;--bad:#b3261e;--focus:#2563a8;--link:#1f5a99;--navy:#0f1c28;--navy2:#172a3a;--shadow:0 1px 2px rgba(16,27,37,.06),0 8px 24px rgba(16,27,37,.06);
+  --hf:'Space Grotesk',ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --bf:'Inter',ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  color-scheme:light;box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0c1318;--surface:#141e26;--surface2:#1c2833;--ink:#e8edf0;--muted:#a1aeb8;--line:#2a3843;
+  --accent:#f0804a;--accent-ink:#15100c;--accent-soft:#2a1d16;--shingle:#9fb1bf;--course-empty:#24313c;
+  --ok:#4cc38a;--bad:#ff8a80;--focus:#7fb0ef;--link:#8fbdf3;--navy:#0a1218;--navy2:#13212c;--shadow:none;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0c1318;--surface:#141e26;--surface2:#1c2833;--ink:#e8edf0;--muted:#a1aeb8;--line:#2a3843;
+  --accent:#f0804a;--accent-ink:#15100c;--accent-soft:#2a1d16;--shingle:#9fb1bf;--course-empty:#24313c;
+  --ok:#4cc38a;--bad:#ff8a80;--focus:#7fb0ef;--link:#8fbdf3;--navy:#0a1218;--navy2:#13212c;--shadow:none;color-scheme:dark}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 72px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--bf);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--surface)}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+a{color:var(--link)}
+.wrap{max-width:1200px;margin:0 auto;padding:0 clamp(18px,4vw,40px)}
+/* header */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--surface);border-bottom:1px solid var(--line)}
+.topin{display:flex;align-items:center;gap:28px;height:68px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink);flex:none}
+.logo{display:flex;align-items:center;height:32px}
+.logo img{height:32px;width:auto;display:block}
+.logo-slot{display:inline-flex;align-items:center;gap:8px;height:32px;padding:0 10px;border:1.5px dashed var(--muted);border-radius:8px;font-size:12px;font-weight:600;color:var(--muted);letter-spacing:.02em}
+.brandtxt{font-family:var(--hf);font-weight:700;font-size:19px;letter-spacing:-.01em;padding-left:12px;border-left:1px solid var(--line)}
+.topnav{display:flex;gap:4px;flex:1;min-width:0;overflow-x:auto;scrollbar-width:none}
+.topnav a{padding:8px 14px;border-radius:8px;color:var(--muted);text-decoration:none;font-weight:500;font-size:15px;white-space:nowrap}
+.topnav a:hover{color:var(--ink);background:var(--surface2)}
+.topnav a[aria-current="page"]{color:var(--ink);background:var(--surface2);font-weight:600}
+.topprog{flex:none;display:flex;align-items:center;gap:10px;font-size:14px;color:var(--muted)}
+.meter{width:96px;height:8px;border-radius:4px;background:var(--surface2);overflow:hidden}
+.meter i{display:block;height:100%;background:var(--accent);border-radius:4px}
+/* layout */
+.shell{flex:1;display:grid;grid-template-columns:272px minmax(0,1fr);max-width:1280px;width:100%;margin:0 auto}
+body.wide .shell{display:block;max-width:none}
+body.wide .rail{display:none}
+.rail{padding:32px 20px 32px clamp(18px,3vw,28px);display:flex;flex-direction:column;gap:14px;border-right:1px solid var(--line)}
+.railh{font-size:13px;font-weight:600;color:var(--muted);margin:0}
+.roofwrap svg{width:100%;height:auto;display:block}
+.railstat{margin:0;font-size:14px;color:var(--muted)}
+.navlist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px}
+.navbtn{width:100%;display:grid;grid-template-columns:28px 1fr auto;align-items:center;gap:10px;padding:9px 10px;border-radius:10px;border:1px solid transparent;background:none;color:var(--ink);font:inherit;font-size:15px;line-height:1.3;text-align:left;cursor:pointer}
+.navbtn:hover{background:var(--surface2)}
+.navbtn[aria-current="page"]{background:var(--surface);border-color:var(--line);font-weight:600;box-shadow:var(--shadow)}
+.navnum{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:700;border:1.5px solid var(--line);color:var(--muted)}
+.navbtn.done .navnum{background:var(--shingle);border-color:var(--shingle);color:var(--bg)}
+.navscore{font-size:13px;color:var(--muted);font-weight:500}
+.railfoot{margin-top:8px;display:flex;flex-direction:column;gap:8px;font-size:14px;padding-top:14px;border-top:1px solid var(--line)}
+.linkbtn{background:none;border:0;padding:0;font:inherit;color:var(--muted);text-align:left;cursor:pointer;text-decoration:underline}
+main{padding:44px clamp(18px,4vw,52px) 88px;width:100%;min-width:0}
+body.wide main{padding:0}
+h1{font-family:var(--hf);font-size:clamp(34px,4.6vw,52px);line-height:1.05;margin:0;letter-spacing:-.025em;font-weight:700}
+h2{font-family:var(--hf);font-size:clamp(24px,2.8vw,32px);line-height:1.15;margin:0;letter-spacing:-.015em}
+h3{font-family:var(--hf)}
+.pnum{font-size:14px;color:var(--accent);font-weight:600;margin:0}
+.phead{display:grid;gap:10px;margin-bottom:28px}
+.lede{font-size:19px;color:var(--muted);max-width:64ch;margin:0}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:10px;border:1.5px solid var(--accent);background:var(--accent);color:var(--accent-ink);font:inherit;font-weight:600;cursor:pointer;text-decoration:none;line-height:1.2}
+.btn:hover{filter:brightness(1.06)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn.ghost:hover{border-color:var(--muted);filter:none}
+.row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.outline{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.outline button{width:100%;text-align:left;font:inherit;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px;cursor:pointer;display:grid;gap:6px;height:100%;box-shadow:var(--shadow);transition:border-color .15s,transform .15s}
+.outline button:hover{border-color:var(--accent);transform:translateY(-2px)}
+.outline b{font-family:var(--hf);font-size:20px}
+.outline span{color:var(--muted);font-size:15px}
+.outline em{font-style:normal;font-size:13px;color:var(--muted);font-weight:500}
+.tip{font-size:15px;color:var(--muted);margin-top:28px}
+kbd{font-family:var(--bf);font-size:13px;border:1px solid var(--line);border-bottom-width:2px;border-radius:5px;padding:1px 6px;background:var(--surface)}
+/* home */
+.hero{background:var(--navy);color:#eef2f4;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;right:-120px;bottom:-160px;width:520px;height:520px;border-radius:50%;background:radial-gradient(closest-side,rgba(240,128,74,.18),transparent);pointer-events:none}
+.heroin{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:56px;align-items:center;padding:72px 0 80px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:#f6b08a;margin:0 0 18px}
+.hero h1{font-size:clamp(38px,5.4vw,64px);color:#fff}
+.hero p.lead{font-size:20px;color:#b9c6cf;max-width:54ch;margin:20px 0 30px}
+.hero .btn.ghost{color:#eef2f4;border-color:#3a4c5a}
+.hero .btn.ghost:hover{border-color:#8fa1af}
+.herocard{background:var(--navy2);border:1px solid #26394a;border-radius:20px;padding:28px;display:grid;gap:18px;position:relative;z-index:1}
+.herocard svg{width:100%;height:auto;display:block}
+.herocard .hp{margin:0;font-size:15px;color:#b9c6cf;text-align:center}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid #26394a;margin-top:0}
+.stats div{padding:22px 0 0}
+.stats b{display:block;font-family:var(--hf);font-size:30px;color:#fff;line-height:1.1}
+.stats span{font-size:14px;color:#9fb0bc}
+.band{padding:72px 0}
+.band.alt{background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.sechead{display:grid;gap:10px;margin-bottom:32px;max-width:720px}
+.how{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.how div{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:26px;box-shadow:var(--shadow);display:grid;gap:8px;align-content:start}
+.band.alt .how div{background:var(--bg)}
+.how .ic{width:44px;height:44px;border-radius:12px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;margin-bottom:6px}
+.how h3{margin:0;font-size:21px}
+.how p{margin:0;color:var(--muted);font-size:16px}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.feature{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:32px;box-shadow:var(--shadow);display:grid;gap:12px;align-content:start}
+.feature h3{margin:0;font-size:26px}
+.feature p{margin:0;color:var(--muted)}
+.feature ul{margin:4px 0 8px;padding-left:20px;color:var(--ink)}
+.foot{border-top:1px solid var(--line);background:var(--surface);font-size:14px;color:var(--muted)}
+.footin{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:24px 0}
+.footin p{margin:0}
+/* reference */
+.refnav{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 32px;padding:0;list-style:none}
+.refnav button{font:inherit;font-size:14px;font-weight:600;padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.refnav button:hover{border-color:var(--accent)}
+.refsec{margin-bottom:48px}
+.refsec>h2{margin-bottom:14px}
+.reftable{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;font-size:15px}
+.reftable th{background:var(--surface2);text-align:left;padding:12px 16px;font-size:13px;color:var(--muted);font-weight:600}
+.reftable td{padding:12px 16px;border-top:1px solid var(--line);vertical-align:top}
+.path{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13.5px}
+.gloss{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.gloss div{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:10px;padding:14px 16px}
+.gloss dt{font-weight:700;margin:0 0 2px}
+.gloss dd{margin:0;color:var(--muted);font-size:15px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.tile{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;display:grid;gap:4px}
+.tile b{font-family:var(--hf);font-size:17px}
+.tile span{color:var(--muted);font-size:15px}
+.tile .n{font-size:13px;font-weight:700;color:var(--accent)}
+/* player */
+.player{border-radius:18px;overflow:hidden;border:1px solid var(--line);background:#111a21}
+.stage{position:relative;aspect-ratio:16/9;overflow:hidden;background:#17232e;color:#eef1f2;font-family:var(--bf)}
+.cv{position:absolute;left:0;top:0;width:1600px;height:900px;transform-origin:0 0}
+.overlay{position:absolute;inset:0;display:grid;place-items:center;background:rgba(12,19,25,.72);padding:16px}
+.overlay[hidden]{display:none}
+.ovcard{display:grid;justify-items:center;gap:14px;text-align:center;color:#eef1f2}
+.bigplay{width:84px;height:84px;border-radius:50%;border:0;background:#f08a52;color:#10171d;display:grid;place-items:center;cursor:pointer}
+.ovt{font-family:var(--hf);font-size:clamp(18px,2.4vw,26px);font-weight:600;margin:0}
+.ovs{font-size:15px;color:#b9c5cd;margin:0}
+.ovrow{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.ovbtn{padding:10px 18px;border-radius:999px;border:1.5px solid #3a4b58;background:#1f2e3a;color:#eef1f2;font:inherit;font-weight:600;cursor:pointer}
+.ovbtn.primary{background:#f08a52;border-color:#f08a52;color:#10171d}
+.controls{display:flex;align-items:center;gap:8px;padding:10px 12px;color:#dfe5e8}
+.ctl{flex:none;width:40px;height:40px;border-radius:50%;border:0;background:#24323d;color:#eef1f2;display:grid;place-items:center;cursor:pointer}
+.ctl:hover{background:#2f404d}
+.dots{display:flex;gap:5px;flex:1;align-items:center;min-width:0}
+.dot{flex:1;height:8px;border-radius:4px;background:#2d3c48;border:0;padding:0;cursor:pointer;position:relative;overflow:hidden;min-width:8px}
+.dot i{position:absolute;left:0;top:0;bottom:0;width:0;background:#f08a52;display:block}
+.dot.past i{width:100%}
+.scount{font-size:13px;color:#a9b8c2;min-width:62px;text-align:right;flex:none}
+.narr{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;padding:0 14px 12px;color:#c9d3d9;font-size:14px}
+.narr p{margin:0}
+.narrbtn{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border-radius:999px;border:1.5px solid #3a4b58;background:#1f2e3a;color:#eef1f2;font:inherit;font-size:14px;font-weight:600;cursor:pointer}
+.narrbtn[aria-pressed="true"]{background:#f08a52;border-color:#f08a52;color:#10171d}
+.narr label{display:inline-flex;align-items:center;gap:6px}
+.narr select{font:inherit;font-size:14px;padding:5px 8px;border-radius:8px;border:1px solid #3a4b58;background:#1f2e3a;color:#eef1f2;max-width:220px}
+.caption{margin:0;padding:16px 22px 22px;color:#e9eef0;font-size:18px;line-height:1.6;border-top:1px solid #22303b;min-height:110px}
+.caption b{color:#f6b08a;font-weight:600}
+/* check */
+.check{margin-top:52px}
+.check .lede{font-size:17px;margin-top:6px}
+.q{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px;margin-top:16px}
+.qt{font-weight:600;font-size:18px;margin:0 0 14px;line-height:1.4}
+.qn{color:var(--muted);font-weight:500;margin-right:6px}
+.opts{display:grid;gap:8px}
+.opt{text-align:left;font:inherit;font-size:16px;padding:12px 16px;border-radius:10px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer;line-height:1.4}
+.opt:hover:not(:disabled){border-color:var(--muted)}
+.opt:disabled{cursor:default}
+.opt.right{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,var(--bg))}
+.opt.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 10%,var(--bg))}
+.fb{margin:12px 0 0;font-size:16px}
+.fb strong{color:var(--ok)}
+.fb.no strong{color:var(--bad)}
+.result{margin-top:22px;background:var(--surface);border:1.5px solid var(--shingle);border-radius:16px;padding:24px;display:grid;gap:14px}
+.result p{margin:0;font-size:18px}
+.pager{margin-top:44px;padding-top:24px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+table.scores{border-collapse:collapse;width:100%;max-width:640px;margin:20px 0}
+table.scores th,table.scores td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line)}
+table.scores td:last-child,table.scores th:last-child{text-align:right}
+/* cases */
+.brief{background:var(--surface);border:1px solid var(--line);border-left:6px solid var(--accent);border-radius:14px;padding:24px;display:grid;gap:14px}
+.brief p{margin:0}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px 24px;margin:0}
+.facts div{display:grid;gap:2px}
+.facts dt{font-size:14px;color:var(--muted);font-weight:600}
+.facts dd{margin:0;font-size:16px}
+.situation{font-size:17px;line-height:1.6}
+.yourturn{margin-top:28px;background:var(--surface);border:1px dashed var(--muted);border-radius:14px;padding:22px;display:grid;gap:12px}
+.yourturn label{font-weight:600;font-size:18px}
+.yourturn textarea{width:100%;min-height:130px;font:inherit;font-size:16px;padding:12px 14px;border-radius:10px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);resize:vertical}
+.yourturn details{border-top:1px solid var(--line);padding-top:12px}
+.yourturn summary{cursor:pointer;font-weight:600;color:var(--link)}
+.yourturn ul{margin:10px 0 0;padding-left:22px}
+.saved{font-size:13px;color:var(--muted);margin:0}
+/* ===== scenes (fixed 1600x900 canvas) ===== */
+.sc{position:absolute;inset:0;padding:80px 100px;display:flex;flex-direction:column;gap:40px}
+.kick{font-size:30px;color:#f08a52;font-weight:600;margin:0}
+.sh{font-family:var(--hf);font-size:62px;line-height:1.08;font-weight:600;margin:0;letter-spacing:-1px}
+.st{font-family:var(--hf);font-size:112px;line-height:1;font-weight:700;margin:0;letter-spacing:-3px}
+.ssub{font-size:36px;color:#b9c5cd;margin:0;max-width:1240px;line-height:1.35}
+.pill{display:inline-block;font-size:28px;font-weight:700;padding:10px 24px;border-radius:999px;color:#10171d}
+.box{background:#1f2e3a;border:1px solid #2e3f4c;border-radius:18px;padding:28px}
+.bt{font-family:var(--hf);font-size:32px;font-weight:600;margin:0 0 8px;line-height:1.15}
+.bd{font-size:25px;color:#b9c5cd;margin:0;line-height:1.35}
+.sm .bt{font-size:28px}.sm .bd{font-size:23px}.sm.box{padding:22px}
+.num{font-family:var(--hf);font-weight:700;font-size:28px;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;color:#10171d;margin-bottom:14px}
+.g{display:grid;gap:20px}
+.layer{display:flex;gap:28px;align-items:center;padding:13px 26px;border-radius:10px}
+.layer b{width:400px;font-size:29px;font-family:var(--hf);font-weight:600}
+.layer span{font-size:24px;color:#d5dde2}
+.chip{display:inline-flex;align-items:center;font-size:40px;font-family:var(--hf);font-weight:600;padding:16px 28px;border-radius:14px;background:#24343f;border:1px solid #33475a}
+.chip.hot{background:#f08a52;color:#10171d;border-color:#f08a52}
+.crumb{display:inline-block;font-size:24px;padding:8px 16px;border-radius:8px;background:#24343f;border:1px solid #33475a;white-space:nowrap}
+.sep{font-size:26px;color:#7f93a2;margin:0 8px}
+.in{opacity:0;animation:rise .7s cubic-bezier(.2,.7,.2,1) forwards;animation-delay:var(--d,0s)}
+.pop{opacity:0;animation:pop .55s cubic-bezier(.3,1.5,.5,1) forwards;animation-delay:var(--d,0s)}
+.grow{transform:scaleX(0);transform-origin:left center;animation:grow 1.1s cubic-bezier(.2,.7,.2,1) forwards;animation-delay:var(--d,0s)}
+.draw{stroke-dasharray:1;stroke-dashoffset:1;animation:draw .9s ease forwards;animation-delay:var(--d,0s)}
+@keyframes rise{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+@keyframes pop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:none}}
+@keyframes grow{to{transform:scaleX(1)}}
+@keyframes draw{to{stroke-dashoffset:0}}
+.stage.paused .cv *{animation-play-state:paused!important}
+@media (prefers-reduced-motion:reduce){
+  .cv .in,.cv .pop{animation:none;opacity:1}
+  .cv .grow{animation:none;transform:none}
+  .cv .draw{animation:none;stroke-dashoffset:0}
+}
+
+/* tracking + dashboard */
+.topmeter{display:flex;align-items:center;gap:10px}
+.sync{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);padding:5px 10px;border:1px solid var(--line);border-radius:999px;white-space:nowrap}
+.sync i{width:8px;height:8px;border-radius:50%;background:var(--muted)}
+.sync[data-st="synced"] i{background:var(--ok)}.sync[data-st="saving"] i,.sync[data-st="loading"] i{background:#c98a12}
+.sync[data-st="readonly"] i,.sync[data-st="error"] i,.sync[data-st="local"] i{background:var(--bad)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.note{font-size:15px;padding:12px 16px;border-radius:10px;margin:0 0 20px;border:1px solid var(--line);background:var(--surface)}
+.note.ok{border-left:4px solid var(--ok)}.note.warn{border-left:4px solid var(--bad)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin:0 0 24px}
+.kpis div{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 20px;box-shadow:var(--shadow);display:grid;gap:2px}
+.kpis b{font-family:var(--hf);font-size:30px;line-height:1.1}.kpis b small{font-size:15px;color:var(--muted);font-weight:500}
+.kpis span{font-size:14px;color:var(--muted)}
+.mygrid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:28px;align-items:start;margin-top:8px}
+.mycard{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px;display:grid;gap:16px;box-shadow:var(--shadow)}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:4px 0 14px}
+.toolbar input,.toolbar select,.fld select,.fld input{font:inherit;font-size:15px;padding:9px 12px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+.toolbar .srch input{width:min(320px,80vw)}
+.grow1{flex:1}
+.tscroll{overflow-x:auto;border-radius:14px}
+.dt{min-width:760px}
+.dt td{vertical-align:middle}
+.lrow{cursor:pointer}.lrow:hover td{background:var(--surface2)}
+.sortb{background:none;border:0;padding:0;font:inherit;font-weight:600;color:inherit;cursor:pointer}
+.who{display:flex;align-items:center;gap:12px}.who img{border-radius:50%;flex:none}
+.who div{display:grid}.who span{font-size:13px;color:var(--muted)}
+.who.big h2{font-size:26px}
+.sub{display:block;font-size:13px;color:var(--muted)}
+.pbar{height:8px;border-radius:4px;background:var(--surface2);overflow:hidden;min-width:90px}
+.pbar i{display:block;height:100%;background:var(--accent);border-radius:4px}
+.chip{display:inline-block;font-size:13px;font-weight:600;padding:4px 10px;border-radius:999px;white-space:nowrap}
+.c-ok{background:color-mix(in srgb,var(--ok) 16%,transparent);color:var(--ok)}
+.c-mid{background:color-mix(in srgb,#c98a12 18%,transparent);color:var(--ink)}
+.c-none{background:var(--surface2);color:var(--muted)}
+.tcount{font-size:13px;color:var(--muted);margin:8px 0 0}
+.empty{background:var(--surface);border:1px dashed var(--line);border-radius:14px;padding:24px;color:var(--muted);margin:0}
+.empty b{color:var(--ink)}
+.hbar{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) 48px 64px;gap:10px;align-items:center;font-size:14px;padding:6px 0}
+.hbar b{text-align:right}.hbar em{font-style:normal;color:var(--muted);font-size:13px}
+.hard{margin:0;padding-left:20px;display:grid;gap:10px;font-size:15px}
+.hard em{display:block;font-style:normal;color:var(--muted);font-size:13px}
+.dlg{border:1px solid var(--line);border-radius:18px;padding:0;background:var(--surface);color:var(--ink);width:min(520px,calc(100vw - 32px));box-shadow:0 20px 60px rgba(0,0,0,.25)}
+.dlg.wide{width:min(900px,calc(100vw - 32px));max-height:calc(100vh - 48px)}
+.dlg::backdrop{background:rgba(10,18,24,.55)}
+.dlghead{display:flex;justify-content:flex-end;padding:14px 18px 0}
+.dlgbody{padding:24px 28px 28px;display:grid;gap:16px}
+.dlgbody h3{margin:8px 0 0;font-size:19px}
+.mode{border:1px solid var(--line);border-radius:12px;padding:12px 16px;margin:0}.mode legend{padding:0 6px}.radio{display:flex;gap:10px;align-items:flex-start;font-weight:500;padding:4px 0}.radio input{margin-top:5px}
+.fld{display:grid;gap:6px;font-weight:600;font-size:15px}.opt2{font-weight:400;color:var(--muted)}
+.ans{border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.anq{margin:0 0 8px;font-size:14px;color:var(--muted)}.ant{margin:0;white-space:pre-wrap}.ant.none{color:var(--muted);font-style:italic}
+.danger{border-top:1px solid var(--line);padding-top:16px}
+.narrnote{font-size:12px;color:#9fb0bc}
+@media (max-width:960px){.mygrid{grid-template-columns:1fr}.sync{display:none}}
+@media (max-width:960px){
+  .shell{grid-template-columns:1fr}
+  .rail{border-right:0;border-bottom:1px solid var(--line);padding:20px clamp(18px,4vw,40px)}
+  .roofwrap{max-width:220px}
+  .heroin{grid-template-columns:1fr;padding:48px 0 56px;gap:36px}
+  .how,.duo{grid-template-columns:1fr}
+  .topprog .meter{display:none}
+  .brandtxt{display:none}
+  .caption{font-size:16px;padding:14px 16px 18px}
+}
+@media (max-width:560px){.stats{grid-template-columns:repeat(2,1fr)}.topprog{display:none}}
+
+/* hosted: sign-in */
+body.gated>.top,body.gated>.shell,body.gated>.foot{display:none}
+body:not(.gated) .bootmsg{display:none}
+.bootmsg{margin:20vh auto 0;color:var(--muted);text-align:center}
+body.gated:has(#login:not([hidden])) .bootmsg{display:none}
+.login{min-height:100vh;display:grid;place-items:center;padding:24px;background:var(--navy)}
+.logincard{width:min(460px,100%);background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:36px;display:grid;gap:18px;box-shadow:0 20px 60px rgba(0,0,0,.25)}
+.loginbrand{display:flex;align-items:center;gap:12px}
+.logincard h1{font-size:30px}
+.logincard .lede{font-size:16px}
+.gbtn{justify-content:center;background:var(--surface);color:var(--ink);border-color:var(--line)}
+.gbtn:hover{border-color:var(--muted)}
+.mailform{display:grid;gap:8px;font-size:14px;color:var(--muted)}
+.mailform input{flex:1;min-width:0;font:inherit;padding:11px 12px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
+.loginmsg{margin:0;font-size:15px;padding:10px 14px;border-radius:10px;border:1px solid var(--line)}
+.loginmsg[data-kind="err"]{border-left:4px solid var(--bad)}.loginmsg[data-kind="ok"]{border-left:4px solid var(--ok)}
+.whoami{font-size:13px;color:var(--muted);max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media (max-width:960px){.whoami{display:none}}
+</style>
+</head>
+<body class="wide gated">
+<p class="bootmsg" id="bootMsg">Checking your sign-in…</p>
+<section class="login" id="login" hidden aria-labelledby="loginH">
+  <div class="logincard">
+    <div class="loginbrand"><span class="logo loginlogo"><span class="logo-slot">ZUPER LOGO</span></span><span class="brandtxt">Roofing Academy</span></div>
+    <h1 id="loginH">Sign in to start learning</h1>
+    <p class="lede">Use your work account. Your progress and scores are saved to your profile so your lead can follow along.</p>
+    <button type="button" class="btn gbtn" id="gBtn" hidden><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.5 12.3c0-.8-.1-1.5-.2-2.3H12v4.3h5.9a5 5 0 0 1-2.2 3.3v2.7h3.6c2.1-1.9 3.2-4.8 3.2-8z"/><path fill="#34A853" d="M12 23c3 0 5.5-1 7.3-2.7l-3.6-2.7c-1 .7-2.2 1.1-3.7 1.1-2.9 0-5.3-1.9-6.2-4.5H2.1v2.8A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.8 14.2a6.6 6.6 0 0 1 0-4.3V7.1H2.1a11 11 0 0 0 0 9.9z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3.1.6 4.2 1.7l3.2-3.2A11 11 0 0 0 2.1 7.1l3.7 2.8C6.7 7.3 9.1 5.4 12 5.4z"/></svg>Continue with Google</button>
+    <form id="mailForm" class="mailform" hidden><label for="mailIn">Or get a sign-in link by email</label><div class="row"><input id="mailIn" type="email" autocomplete="email" required placeholder="you@zuper.co"><button type="submit" class="btn ghost">Email me a link</button></div></form>
+    <p class="loginmsg" id="loginMsg" role="status" hidden></p>
+  </div>
+</section>
+<header class="top"><div class="wrap topin">
+  <a class="brand" href="#home" aria-label="Zuper Roofing Academy home"><span class="logo" id="logo"><span class="logo-slot" title="Placeholder for the official Zuper logo">ZUPER LOGO</span></span><span class="brandtxt">Roofing Academy</span></a>
+  <nav class="topnav" aria-label="Main"><a href="#home" data-nav="home">Home</a><a href="#training" data-nav="training">Training</a><a href="#cases" data-nav="cases">Case studies</a><a href="#reference" data-nav="reference">Reference</a><a href="#finish" data-nav="finish">My progress</a><a href="#team" data-nav="team" id="teamNav" hidden>Team dashboard</a><a href="#reference" data-deck target="_blank" rel="noopener">Slide deck ↗</a></nav>
+  <div class="topprog"><span id="topMeter" class="topmeter"></span><span class="sync" id="sync" role="status"></span><span class="whoami" id="whoami"></span><button type="button" class="linkbtn" id="signOut" hidden>Sign out</button></div>
+</div></header>
+<div class="shell">
+  <aside class="rail" aria-label="Course progress">
+    <p class="railh">Course progress</p>
+    <div class="roofwrap" id="railRoof"></div>
+    <p class="railstat" id="railStat"></p>
+    <nav aria-label="Training parts"><ol class="navlist" id="navList"></ol></nav>
+    <div class="railfoot"><a href="#reference" data-deck target="_blank" rel="noopener">Open the slide deck</a><button type="button" class="linkbtn" id="resetBtn">Reset my progress</button></div>
+  </aside>
+  <main id="main" tabindex="-1"></main>
+</div>
+<footer class="foot"><div class="wrap footin"><p>Zuper Roofing Academy · Internal training for Solutions Architecture</p><p id="footNote">Progress is saved in this browser only.</p></div></footer>
+<dialog id="welcome" class="dlg" aria-labelledby="wName"><form id="wForm" method="dialog" class="dlgbody">
+  <h2 id="wName">Welcome to the Academy</h2><p class="lede" id="wIntro" style="font-size:16px"></p>
+  <fieldset class="fld mode" id="wModeBox" hidden><legend>How will you use the Academy?</legend><label class="radio"><input type="radio" name="wMode" value="learn" checked> I’m taking the training</label><label class="radio"><input type="radio" name="wMode" value="review"> I’m reviewing the team, not taking the training (lead, HR or leadership)</label></fieldset>
+  <label class="fld" id="wRoleBox">Your role<select id="wRole" required><option value="">Choose your role</option><option>Business Analyst</option><option>Solutions Architect</option><option>Implementation Specialist</option><option>Project Manager</option><option>Customer Success</option><option>Sales</option><option>Other</option></select></label>
+  <label class="fld" id="wCohortBox">Cohort or start month <span class="opt2">(optional)</span><input id="wCohort" type="text" maxlength="40" placeholder="e.g. Nov 2026"></label>
+  <p class="note ok" id="wNote" style="margin:0">Your lead and HR can see your progress, quiz scores and written case answers. Nothing else about you is stored.</p>
+  <div class="row"><button type="submit" class="btn">Save and start</button><button type="button" class="btn ghost" id="wSkip">Not now</button></div>
+</form></dialog>
+<dialog id="learnerDlg" class="dlg wide" aria-label="Learner details"><div class="dlghead"><button type="button" class="btn ghost" data-close>Close</button></div><div class="dlgbody"></div></dialog>
+<script src="config.js"></script>
+<script src="vendor/supabase.js"></script>
+<script>
+window.startAcademy=function(){
+"use strict";
+const DECK=(window.ACADEMY_CONFIG&&window.ACADEMY_CONFIG.DECK_URL)||"#reference";
+const KEY="zuper-roofing-training-v1";
+const esc=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const nowISO=()=>new Date().toISOString();
+const cu=n=>(window.claude&&typeof window.claude.use==="function")?Promise.resolve(window.claude.use(n)).catch(()=>null):Promise.resolve(null);
+const withTimeout=(p,ms)=>Promise.race([p,new Promise((_,rej)=>setTimeout(()=>rej({code:"timeout"}),ms))]);
+const blank=()=>({done:{},best:{},answers:{},cases:{},notes:{},meta:{parts:{},cases:{},watched:{},role:"",cohort:"",startedAt:"",updatedAt:""},voice:{on:true,name:"",cvoice:"buttery",rate:1}});
+function normalize(s){const b=blank();if(!s||typeof s!=="object")return b;
+  for(const k of ["done","best","answers","cases","notes"])b[k]=Object.assign({},s[k]||{});
+  const m=s.meta||{};b.meta=Object.assign(b.meta,m,{parts:Object.assign({},m.parts||{}),cases:Object.assign({},m.cases||{}),watched:Object.assign({},m.watched||{})});
+  b.voice=Object.assign(b.voice,s.voice||{});return b;}
+let localKey=KEY;
+let store=blank();
+try{const raw=localStorage.getItem(KEY);if(raw)store=normalize(JSON.parse(raw));}catch(e){}
+const hasProgress=st=>Object.keys(st.done).length+Object.keys(st.cases).length+Object.keys(st.answers).length+Object.keys(st.meta.watched).length+Object.keys(st.notes).length>0;
+function saveLocal(){try{localStorage.setItem(localKey,JSON.stringify(store));}catch(e){}}
+
+/* ---------------- sync ---------------- */
+const SY={mode:"local",ref:null,writing:false,dirty:false,t:null,status:"loading"};
+const ME={id:null,canEdit:false,isOwner:false,name:"",avatar:"",user:null,db:null,ready:false};
+function remoteBody(){const b=JSON.parse(JSON.stringify(store));delete b.voice;b.v=1;return b;}
+function save(){
+  store.meta.updatedAt=nowISO();if(!store.meta.startedAt)store.meta.startedAt=store.meta.updatedAt;
+  saveLocal();
+  if(SY.mode==="remote"){SY.dirty=true;clearTimeout(SY.t);SY.t=setTimeout(flush,700);setSync("saving");}
+}
+async function flush(){
+  if(SY.mode!=="remote"||SY.writing||!SY.dirty)return;
+  SY.writing=true;SY.dirty=false;
+  try{await SY.ref.set(remoteBody());setSync("synced");}
+  catch(e){const c=e&&e.code;
+    if(c==="unavailable"||c==="resource_exhausted"){SY.dirty=true;setSync("saving");setTimeout(()=>{SY.writing=false;flush();},1500+Math.random()*2000);return;}
+    if(c==="invalid_argument"||c==="not_granted"||c==="revoked"||c==="capability_disabled"){SY.mode="readonly";setSync("readonly");}
+    else setSync("error");}
+  SY.writing=false;if(SY.dirty)flush();
+}
+const SYNC_TXT={loading:"Connecting…",local:"Saved on this device",saving:"Saving…",synced:"Progress synced",readonly:"View-only access",error:"Couldn’t sync"};
+function setSync(st){SY.status=st;const el=document.getElementById("sync");if(el){el.dataset.st=st;el.innerHTML=`<i aria-hidden="true"></i>${SYNC_TXT[st]||""}`;
+  el.title=st==="local"?"Your progress is only in this browser, so your lead can’t see it.":st==="readonly"?"Your access is view-only, so your progress isn’t shared. Contact the Academy owner.":st==="synced"?"Your lead can see your progress and scores.":"";}
+  const fn=document.getElementById("footNote");if(fn)fn.textContent=(SY.mode==="remote")?"Your progress, scores and written case answers are visible to leads and HR.":"Progress is saved in this browser only.";}
+function mergeInto(remote,local){let changed=false;
+  for(const p of PARTS){const n=p.n;if(local.done[n]&&!remote.done[n]){remote.done[n]=true;remote.best[n]=local.best[n];remote.meta.parts[n]=local.meta.parts[n]||remote.meta.parts[n];changed=true;}
+    else if(local.done[n]&&(local.best[n]||0)>(remote.best[n]||0)){remote.best[n]=local.best[n];changed=true;}
+    if(local.meta.watched[n]&&!remote.meta.watched[n]){remote.meta.watched[n]=local.meta.watched[n];changed=true;}
+    if(local.answers[n]&&!remote.answers[n]){remote.answers[n]=local.answers[n];changed=true;}}
+  for(const c of CASES){const n=c.n,k="c"+n;if(local.cases[n]!=null&&(remote.cases[n]==null||local.cases[n]>remote.cases[n])){remote.cases[n]=local.cases[n];if(!remote.meta.cases[n])remote.meta.cases[n]=local.meta.cases[n];changed=true;}
+    if(local.notes[k]&&!remote.notes[k]){remote.notes[k]=local.notes[k];changed=true;}
+    if(local.answers[k]&&!remote.answers[k]){remote.answers[k]=local.answers[k];changed=true;}}
+  return changed;}
+async function initIdentity(){
+  setSync("loading");
+  const [user,db]=await Promise.all([cu("user"),cu("db")]);
+  ME.user=user;ME.db=db;
+  if(user){try{ME.id=await user.id();}catch(e){}try{ME.canEdit=!!(await user.canEdit());}catch(e){}try{ME.isOwner=!!(await user.isOwner());}catch(e){}
+    try{const me=await user.me();ME.name=me.name||"";ME.avatar=me.avatarUrl||"";}catch(e){}}
+  ME.ready=true;paintTeamNav();
+  if(!db||!ME.id){SY.mode="local";setSync("local");refreshView();return;}
+  let canW=null;try{canW=await user.can("data.write");}catch(e){}
+  SY.ref=db.doc("progress/"+ME.id);
+  let snap;try{snap=await withTimeout(SY.ref.get(),10000);}catch(e){SY.mode="local";setSync("error");refreshView();return;}
+  const anon=store;const voice=anon.voice;
+  localKey=KEY+":"+ME.id;
+  let cached=null;try{const r=localStorage.getItem(localKey);if(r)cached=normalize(JSON.parse(r));}catch(e){}
+  SY.mode=canW===false?"readonly":"remote";
+  let changed=false,isNew=false;
+  if(snap.exists){store=normalize(snap.data());if(cached)changed=mergeInto(store,cached)||changed;}
+  else{isNew=true;store=cached||normalize(anon);if(!cached&&hasProgress(anon))changed=true;else if(cached&&hasProgress(cached))changed=true;}
+  store.voice=voice;saveLocal();
+  if(SY.mode==="remote"){if(changed)save();else setSync(snap.exists?"synced":"synced");}else setSync("readonly");
+  refreshView();
+  let welcomed=false;try{welcomed=localStorage.getItem(localKey+":welcomed")==="1";}catch(e){}
+  if(SY.mode==="remote"&&!store.meta.role&&!store.meta.reviewer&&!welcomed)openWelcome(isNew);
+}
+function openWelcome(first){
+  const d=document.getElementById("welcome");if(!d||d.open)return;
+  document.getElementById("wName").textContent=ME.name?`Welcome, ${ME.name.split(" ")[0]}`:"Welcome to the Academy";
+  document.getElementById("wIntro").textContent=first?"Tell us a little about you so your lead can follow your progress.":"Update your details.";
+  document.getElementById("wRole").value=store.meta.role||"";document.getElementById("wCohort").value=store.meta.cohort||"";
+  const mb=document.getElementById("wModeBox");mb.hidden=!ME.canEdit;
+  if(ME.canEdit){document.getElementById("wIntro").textContent=first?"Are you here to take the training, or to follow your team’s progress?":"Update your details.";}
+  d.querySelector(`input[name="wMode"][value="${ME.canEdit&&store.meta.reviewer?"review":"learn"}"]`).checked=true;syncMode();
+  try{d.showModal();}catch(e){d.setAttribute("open","");}
+}
+function syncMode(){const rev=ME.canEdit&&document.querySelector('input[name="wMode"]:checked').value==="review";
+  document.getElementById("wRoleBox").hidden=rev;document.getElementById("wCohortBox").hidden=rev;document.getElementById("wRole").required=!rev;
+  document.getElementById("wNote").textContent=rev?"You won’t appear as a learner on the team dashboard or in its averages, even if you try the lessons.":"Your lead and HR can see your progress, quiz scores and written case answers. Nothing else about you is stored.";}
+function wireWelcome(){
+  const d=document.getElementById("welcome");
+  d.querySelectorAll('input[name="wMode"]').forEach(r=>r.onchange=syncMode);
+  d.addEventListener("close",()=>{try{localStorage.setItem(localKey+":welcomed","1");}catch(e){}});
+  document.getElementById("wForm").addEventListener("submit",e=>{e.preventDefault();
+    const rev=ME.canEdit&&document.querySelector('input[name="wMode"]:checked').value==="review";
+    store.meta.reviewer=rev;
+    if(!rev){store.meta.role=document.getElementById("wRole").value.slice(0,60);store.meta.cohort=document.getElementById("wCohort").value.trim().slice(0,40);}
+    save();d.close();if(rev&&curView()==="home")location.hash="team";else refreshView();});
+  document.getElementById("wSkip").onclick=()=>d.close();
+}
+
+const PC={1:"#6fa3e6",2:"#e8b54a",3:"#f08a52",4:"#4cbf82"};
+const PN={1:"Lead Intake",2:"Inspection & Sales",3:"Production",4:"Revenue"};
+const D=(s,extra)=>`style="--d:${s.toFixed(2)}s;${extra||""}"`;
+const pill=n=>`<span class="pill" style="background:${PC[n]}">${n} · ${PN[n]}</span>`;
+const head=h=>h?`<h3 class="sh in" ${D(.1)}>${h}</h3>`:"";
+
+/* ---------------- scene renderers ---------------- */
+const R={};
+R.title=s=>`<div class="sc" style="justify-content:center">${s.kick?`<p class="kick in" ${D(.1)}>${s.kick}</p>`:""}<h2 class="st in" ${D(.35)}>${s.h}</h2>${s.sub?`<p class="ssub in" ${D(.9)}>${s.sub}</p>`:""}${s.pipes?`<div class="in" ${D(1.5,"display:flex;gap:16px;flex-wrap:wrap")}>${[1,2,3,4].map(pill).join("")}</div>`:""}</div>`;
+R.roof=s=>{
+  const L=(x1,y1,x2,y2,c,w,d)=>`<line class="draw" pathLength="1" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${c}" stroke-width="${w}" stroke-linecap="round" ${D(d)}/>`;
+  const eave="#e8b54a",hip="#6fa3e6",val="#4cbf82",ridge="#f08a52",rake="#c39bf0";
+  const svg=`<svg width="680" height="580" viewBox="60 60 680 580" aria-hidden="true">
+  <polygon class="in" ${D(.1)} points="100,100 700,100 700,400 500,400 500,600 300,600 300,400 100,400" fill="#2a3a47"/>
+  ${L(100,100,700,100,eave,12,.5)}${L(100,100,100,400,eave,12,.6)}${L(700,100,700,400,eave,12,.6)}${L(100,400,300,400,eave,12,.7)}${L(500,400,700,400,eave,12,.7)}${L(300,400,300,600,eave,12,.8)}${L(500,400,500,600,eave,12,.8)}
+  <line class="in" ${D(1.6)} x1="300" y1="600" x2="500" y2="600" stroke="${rake}" stroke-width="12" stroke-dasharray="4 18" stroke-linecap="round"/>
+  ${L(100,100,250,250,hip,9,2.6)}${L(100,400,250,250,hip,9,2.6)}${L(700,100,550,250,hip,9,2.6)}${L(700,400,550,250,hip,9,2.6)}
+  <g class="in" ${D(3.6)} stroke="${val}" stroke-width="9" stroke-dasharray="20 12"><line x1="300" y1="400" x2="400" y2="300"/><line x1="500" y1="400" x2="400" y2="300"/></g>
+  ${L(250,250,550,250,ridge,14,4.6)}${L(400,300,400,600,ridge,14,4.9)}</svg>`;
+  const leg=[[eave,"solid","Eave","Low, level edge over the gutter","starter, drip edge",.5],[rake,"dotted","Rake","Sloped edge at a gable end","starter, drip edge",1.6],[hip,"solid","Hip","Sloped outside edge where planes meet","ridge cap",2.6],[val,"dashed","Valley","Inside “V” where water runs","valley metal, ice & water",3.6],[ridge,"solid","Ridge","The peak at the top","ridge cap, vents",4.6]];
+  return `<div class="sc"><h3 class="sh in" ${D(.1)}>Five roof lines you’ll hear every day</h3><div style="display:flex;gap:56px;align-items:center">${svg}<div style="display:flex;flex-direction:column;gap:22px;flex:1">${leg.map(([c,st,t,d,f,dl])=>`<div class="in" ${D(dl,"display:flex;gap:22px;align-items:flex-start")}><div style="width:60px;margin-top:20px;border-top:9px ${st} ${c}"></div><div><p class="bt" style="margin:0">${t}</p><p class="bd">${d}. Feeds ${f}.</p></div></div>`).join("")}</div></div></div>`;
+};
+R.layers=s=>{
+  const n=s.items.length;const shades=["#5a6f80","#52677a","#4b5f71","#455868","#3f5160","#394a58","#334350","#2d3c48"];
+  return `<div class="sc">${head(s.h)}<div style="display:flex;gap:40px;align-items:flex-start"><div style="flex:1.8;display:flex;flex-direction:column;gap:6px">${s.items.map(([t,d],i)=>`<div class="layer in" ${D(.5+(n-1-i)*.45,"background:"+shades[i%8])}><b>${t}</b><span>${d}</span></div>`).join("")}</div>${s.note?`<div class="box in" ${D(.6+n*.45,"flex:1")}><p class="bt">${s.note[0]}</p><p class="bd">${s.note[1]}</p></div>`:""}</div></div>`;
+};
+R.big=s=>`<div class="sc" style="justify-content:center">${s.kick?`<p class="kick in" ${D(.1)}>${s.kick}</p>`:""}<p class="pop" ${D(.4,"font-family:var(--hf);font-size:220px;font-weight:700;line-height:.95;margin:0;color:#f08a52;letter-spacing:-6px")}>${s.n}</p><p class="in" ${D(1.1,"font-family:var(--hf);font-size:56px;font-weight:600;margin:0")}>${s.label}</p><p class="ssub in" ${D(1.9)}>${s.sub}</p></div>`;
+R.compare=s=>{
+  const col=(c,i)=>`<div class="box in" ${D(.5+i*1.2,"flex:1;border-top:10px solid "+c.color+";display:flex;flex-direction:column;gap:22px")}><p style="font-family:var(--hf);font-size:52px;font-weight:700;margin:0">${c.t}</p>${c.rows.map(([k,v])=>`<div><p style="font-size:22px;color:#93a6b4;margin:0 0 2px;font-weight:600">${k}</p><p style="font-size:29px;margin:0;line-height:1.3">${v}</p></div>`).join("")}</div>`;
+  return `<div class="sc">${head(s.h)}<div style="display:flex;gap:32px">${col(s.left,0)}${col(s.right,1)}</div></div>`;
+};
+R.flow=s=>{
+  const n=s.steps.length;const cols=s.cols||(n<=4?n:n<=6?3:n<=8?4:5);const c=s.c?PC[s.c]:"#f08a52";const small=n>6;
+  return `<div class="sc">${s.c?`<div class="in" ${D(0)}>${pill(s.c)}</div>`:""}${head(s.h)}<div class="g" style="grid-template-columns:repeat(${cols},1fr)">${s.steps.map(([t,d],i)=>`<div class="box ${small?"sm":""} in" ${D(.6+i*.45,"border-top:6px solid "+c)}><div class="num" style="background:${c}">${i+1}</div><p class="bt">${t}</p>${d?`<p class="bd">${d}</p>`:""}</div>`).join("")}</div></div>`;
+};
+R.cards=s=>{
+  const cols=s.cols||3;const small=cols>=4||s.items.length>6;
+  return `<div class="sc">${head(s.h)}<div class="g" style="grid-template-columns:repeat(${cols},1fr)">${s.items.map(([t,d,c],i)=>`<div class="box ${small?"sm":""} in" ${D(.5+i*(s.items.length>8?.18:.32),c?"border-top:6px solid "+c:"")}><p class="bt">${t}</p><p class="bd">${d}</p></div>`).join("")}</div></div>`;
+};
+R.lifecycle=s=>{
+  const cols=[1,2,3,4].map((n,ci)=>`<div style="flex:1;display:flex;flex-direction:column;gap:12px"><p class="in" ${D(.4+ci*1.3,"margin:0;background:"+PC[n]+";color:#10171d;font-family:var(--hf);font-size:30px;font-weight:700;padding:14px 20px;border-radius:12px")}>${n} · ${PN[n]}</p>${s.cols[ci].map((t,j)=>`<div class="box sm in" ${D(.7+ci*1.3+j*.22,"border-left:7px solid "+PC[n]+";padding:16px 20px")}><p class="bd" style="color:#e3e9ec">${t}</p></div>`).join("")}</div>`).join("");
+  return `<div class="sc">${head(s.h)}<div style="display:flex;gap:20px">${cols}</div></div>`;
+};
+R.pipes=s=>{
+  const lines=[1,2,3,4].map((n,i)=>`<polyline class="draw" pathLength="1" ${D(.4+i*.8)} points="60,${280+80*i} 396,${40+80*i} 732,${280+80*i}" fill="none" stroke="${PC[n]}" stroke-width="58" stroke-linejoin="miter"/>`).join("");
+  return `<div class="sc" style="flex-direction:row;align-items:center;gap:80px"><svg width="792" height="560" viewBox="0 0 792 560" aria-hidden="true">${lines}</svg><div style="display:flex;flex-direction:column;gap:26px">${[1,2,3,4].map((n,i)=>`<p class="in" ${D(.6+i*.8,"margin:0;font-family:var(--hf);font-size:52px;font-weight:700;color:"+PC[n])}>${n} ${PN[n]}</p>`).join("")}<p class="ssub in" ${D(4)}>Four pipelines, one roof.</p></div></div>`;
+};
+R.formula=s=>{
+  const tk=["2,000 sq ft","× 1.10","= 2,200","÷ 33","= 66.7","round up","= 67 bundles"];
+  return `<div class="sc">${head("Field shingles, step by step")}<p class="in" ${D(.6,"margin:0;font-family:var(--hf);font-size:48px;font-weight:600;background:#0f171d;border:1px solid #33475a;border-radius:16px;padding:26px 36px")}>CEIL( Roof area × (1 + waste) ÷ 33 )</p><div style="display:flex;flex-wrap:wrap;gap:18px;align-items:center">${tk.map((t,i)=>`<span class="chip pop ${i===tk.length-1?"hot":""}" ${D(1.6+i*.75)}>${t}</span>`).join("")}</div><p class="ssub in" ${D(7.2)}>Waste covers cuts and overlaps. CEIL always rounds up, because nobody orders two thirds of a bundle.</p></div>`;
+};
+R.bars=s=>`<div class="sc">${head("Same job: $70 cost, $100 price")}<div style="display:flex;height:120px;border-radius:14px;overflow:hidden"><div class="grow" ${D(.6,"width:70%;background:#4b5f71;display:flex;align-items:center;padding:0 30px")}><span style="font-size:34px;font-weight:700">Cost $70</span></div><div class="grow" ${D(1.5,"width:30%;background:#f08a52;color:#10171d;display:flex;align-items:center;padding:0 30px")}><span style="font-size:34px;font-weight:700">Profit $30</span></div></div><div style="display:flex;gap:32px">${[["30%","Margin","Profit ÷ price = 30 ÷ 100","#f08a52"],["42.9%","Markup","Profit ÷ cost = 30 ÷ 70","#6fa3e6"]].map(([n,t,d,c],i)=>`<div class="box in" ${D(2.6+i*1.1,"flex:1")}><p style="font-family:var(--hf);font-size:120px;font-weight:700;line-height:1;margin:0 0 10px;color:${c}">${n}</p><p class="bt">${t}</p><p class="bd">${d}</p></div>`).join("")}</div></div>`;
+R.phone=s=>{
+  const tasks=["Site preparation","Tear-off","Decking check & repair","Underlayment","Shingle installation","Penetration sealing","Ventilation","Sealing & detailing","Cleanup & disposal","Final inspection"];
+  const acts=["Status: On My Way, then Arrived","Work the service tasks in order","Photos to the feed and albums","Clock in and out, log expenses","No signal? It syncs later","All tasks done: close the job"];
+  const T=tasks.length,step=.55,st=1;
+  return `<div class="sc" style="flex-direction:row;gap:70px;align-items:center"><div style="flex:1;display:flex;flex-direction:column;gap:30px"><h3 class="sh in" ${D(.1)}>What the crew does in the app</h3>${acts.map((a,i)=>`<p class="in" ${D(.5+i*.5,"margin:0;font-size:32px;display:flex;gap:18px;align-items:center")}><span style="width:14px;height:14px;border-radius:50%;background:#f08a52;flex:none"></span>${a}</p>`).join("")}</div>
+  <div style="width:500px;height:760px;border:14px solid #0b1116;border-radius:60px;background:#f4f6f4;color:#17232e;padding:40px 30px;display:flex;flex-direction:column;gap:10px;flex:none"><p style="margin:0;font-size:26px;font-weight:700">Roof replacement</p><p style="margin:0;font-size:21px;color:#55616b">Service tasks</p><div style="height:12px;border-radius:6px;background:#dfe4df;overflow:hidden;margin:4px 0 8px"><div class="grow" ${D(st,"height:100%;background:#1d7446;animation-duration:"+(T*step)+"s;animation-timing-function:linear")}></div></div>
+  ${tasks.map((t,i)=>`<div style="display:flex;gap:16px;align-items:center;padding:7px 0;border-bottom:1px solid #e3e7e3"><span style="position:relative;width:30px;height:30px;flex:none;border:3px solid #b5bdb5;border-radius:50%"><span class="pop" ${D(st+(i+1)*step,"position:absolute;inset:-3px;border-radius:50%;background:#1d7446;color:#fff;display:grid;place-items:center;font-size:18px;font-weight:700")}>✓</span></span><span style="font-size:22px">${t}</span></div>`).join("")}</div></div>`;
+};
+R.jobbar=s=>`<div class="sc">${head("One job, many appointments")}<div style="display:flex;gap:6px">${[[1,"No appointment","Lead job is non-dispatchable"],[2,"1 appointment","Inspection, plus an adjuster visit on insurance"],[3,"1 per visit","Each production trip: tear-off, install, gutters"],[4,"No visit","Invoice, collect, close"]].map(([n,a,d],i)=>`<div style="flex:1;display:flex;flex-direction:column;gap:14px"><div class="grow" ${D(.5+i*.6,"background:"+PC[n]+";color:#10171d;font-family:var(--hf);font-size:29px;font-weight:700;padding:20px 22px")}>${n} · ${PN[n]}</div><p class="in" ${D(1+i*.6,"margin:0;font-size:29px;font-weight:700;padding:0 8px")}>${a}</p><p class="bd in" ${D(1.2+i*.6,"padding:0 8px")}>${d}</p></div>`).join("")}</div><div class="box in" ${D(3.6)}><p class="bt">Retail and insurance are two categories</p><p class="bd">Replacement and Insurance Replacement, with Inspection as a status in both. Find storm damage on a Replacement job? Once the checklist is submitted the job switches to Insurance Replacement, keeps its line items and history, and an adjuster appointment is booked.</p></div></div>`;
+R.paths=s=>`<div class="sc">${head(s.h)}<div style="display:flex;flex-direction:column;gap:18px">${s.rows.map(([w,p],i)=>`<div class="in" ${D(.5+i*.55,"display:grid;grid-template-columns:420px 1fr;gap:24px;align-items:center;padding-bottom:16px;border-bottom:1px solid #2c3d4a")}><p style="margin:0;font-size:29px;font-weight:600">${w}</p><div style="display:flex;flex-wrap:wrap;align-items:center;row-gap:8px">${p.map((c,j)=>`${j?'<span class="sep">›</span>':""}<span class="crumb">${c}</span>`).join("")}</div></div>`).join("")}</div></div>`;
+R.pairs=s=>`<div class="sc">${head("One login instead of six tools")}<div style="display:flex;gap:40px;align-items:flex-start"><div style="flex:1.5;display:flex;flex-direction:column;gap:14px">${s.rows.map(([o,z],i)=>`<div class="in" ${D(.5+i*.45,"display:grid;grid-template-columns:1fr 60px 1fr;align-items:center;gap:10px")}><p style="margin:0;font-size:28px;color:#93a6b4;text-decoration:line-through;text-decoration-color:#f08a52">${o}</p><span style="font-size:32px;color:#f08a52;text-align:center">→</span><p style="margin:0;font-size:29px;font-weight:700">${z}</p></div>`).join("")}</div><div class="box in" ${D(.6+s.rows.length*.45,"flex:1")}><p class="bt">Connects to</p>${s.connects.map(([a,b])=>`<p class="bd" style="margin-top:12px"><b style="color:#eef1f2">${a}:</b> ${b}</p>`).join("")}</div></div></div>`;
+
+/* ---------------- content ---------------- */
+const PARTS=[
+{n:1,title:"Roofing 101",lede:"The roof, the units, and who pays. You can’t configure a system for a trade you don’t understand.",
+scenes:[
+ {k:"title",kick:"Part 1",h:"Roofing 101",sub:"Before we configure anything, we learn the trade: the roof itself, the units roofers think in, and who pays for the job.",cap:"Welcome to Roofing 101. Our clients are roofing contractors, so before touching Zuper we learn their world: what a roof is made of, how it’s measured, and who pays for it."},
+ {k:"roof",cap:"This is a roof seen from above, the way <b>EagleView</b> or <b>Hover</b> draw it. Five lines matter: <b>eaves</b> along the low edges, the <b>rake</b> at a gable end, <b>hips</b> on the sloped outside edges, <b>valleys</b> in the inside V, and the <b>ridge</b> at the peak. Each is measured in linear feet and drives material quantities in CPQ."},
+ {k:"layers",h:"A roof is a stack of layers",items:[["Ridge cap & vents","Caps the peak; vents let the attic breathe"],["Shingles","The visible weather surface"],["Starter strip","First course along eaves and rakes"],["Underlayment","Water-resistant sheet over the deck"],["Ice & water shield","Sticky membrane at eaves and valleys"],["Drip edge & flashing","Metal that steers water off edges and joints"],["Decking","Plywood or OSB; everything nails here"],["Rafters","The frame; untouched in a re-roof"]],note:["Two crew words","Tear-off strips the roof back to the decking. Dry-in means the deck is covered and the house is watertight again, even before shingles."],cap:"From the bottom up: rafters, then <b>decking</b>, metal <b>drip edge and flashing</b>, <b>ice and water shield</b> in the risky spots, <b>underlayment</b>, a <b>starter strip</b>, <b>shingles</b>, then <b>ridge cap and vents</b>. Every layer is a product category in the client’s catalog and a line on a proposal."},
+ {k:"big",kick:"The unit that rules them all",n:"1 SQ",label:"= 100 square feet",sub:"A 2,000 sq ft roof is 20 squares. Most architectural shingles come 3 bundles to a square, and every order adds 10–15% waste.",cap:"Roofers price and order in <b>squares</b>: one square is a hundred square feet. Shingles come in <b>bundles</b>, usually three per square. Edges are measured in <b>linear feet</b>, and every order adds a <b>waste factor</b> for cuts and overlaps."},
+ {k:"compare",h:"Every roof job is retail or insurance",left:{t:"Retail",color:"#6fa3e6",rows:[["Who pays","The homeowner: cash, card or financing"],["Who sets the scope","Our inspection and proposal"],["Our Zuper category","Replacement"]]},right:{t:"Insurance",color:"#f08a52",rows:[["Who pays","The carrier, minus the deductible"],["Who sets the scope","The carrier’s adjuster, plus our supplements"],["Our Zuper category","Insurance Replacement"]]},cap:"The biggest split in roofing is who pays. <b>Retail</b>: the homeowner pays and the roofer sets the scope. <b>Insurance</b>: the carrier pays, minus the homeowner’s deductible, and the adjuster sets the scope. In our setup they’re two job categories: <b>Replacement</b> and <b>Insurance Replacement</b>."},
+ {k:"flow",h:"How an insurance roof gets paid",steps:[["Storm hits","Hail or wind damage"],["Claim filed","Homeowner calls the carrier"],["Adjuster visits","Our rep often meets them"],["Carrier estimate","Approved scope and amount"],["Supplements","We request missed items"],["Carrier pays","Claim minus the deductible"],["Homeowner pays","The deductible, to the roofer"]],cap:"An insurance job runs storm, claim, adjuster visit, carrier estimate, then our <b>supplements</b> for anything the adjuster missed. The carrier pays the claim minus the deductible, and the homeowner pays the deductible. On <b>ACV</b> policies the homeowner also covers depreciation; <b>RCV</b> pays full replacement cost."}
+],
+quiz:[
+ {q:"How many square feet is one roofing square?",o:["10","100","1,000","33"],a:1,e:"One square is 100 sq ft, so a 2,000 sq ft roof is 20 squares."},
+ {q:"Which roof line is the inside “V” where two planes meet and water collects?",o:["Hip","Rake","Valley","Eave"],a:2,e:"Valleys concentrate water, so they get valley metal and ice & water shield."},
+ {q:"On an insurance job, who sets the approved scope?",o:["The homeowner","The carrier’s adjuster","The crew lead","The supplier"],a:1,e:"The adjuster sets scope. We send supplements for anything missed."},
+ {q:"What does “dry-in” mean?",o:["The old roof has been removed","The deck is covered and the house is watertight","The final inspection is signed","Materials have been delivered"],a:1,e:"Dry-in comes after tear-off: decking, underlayment, ice & water and flashing make the house watertight."},
+ {q:"Which job category do we use for a retail roof replacement?",o:["Insurance Replacement","Replacement","Repair","Lead"],a:1,e:"Retail is Replacement; insurance work is Insurance Replacement."}
+]},
+{n:2,title:"The roofing lifecycle",lede:"Every stage of a roof job, from first call to paid invoice, grouped into the four pipelines.",
+scenes:[
+ {k:"pipes",cap:"Every roofing company runs four pipelines. <b>Lead Intake</b> in blue, <b>Inspection and Sales</b> in gold, <b>Production</b> in orange, <b>Revenue</b> in green. These colours follow you through the rest of the training."},
+ {k:"lifecycle",h:"From first call to paid invoice",cols:[["Lead comes in","Customer and property created","Qualified: retail or insurance","Inspection booked"],["Site inspection and photos","Roof measurements","Proposal: Good, Better, Best","Signed: Won, or Lost"],["Pre-production and supplements","Materials ordered and delivered","Tear-off, dry-in, install","Quality check and walkthrough"],["Invoice sent","Payment collected","Synced to QuickBooks Online","Paid and closed, then warranty"]],cap:"<b>Lead Intake</b> turns an enquiry into a qualified job with an inspection booked. <b>Inspection and Sales</b> measures the roof and gets a proposal signed. <b>Production</b> orders materials and builds. <b>Revenue</b> invoices, collects, syncs to QuickBooks Online and closes."},
+ {k:"title",kick:"How we explain it to clients",h:"Comes in. Gets delivered. Gets paid.",sub:"We run demos and workshops as a workflow story, never a feature tour, so the client sees their own business in Zuper.",pipes:true,cap:"This is also how we demo and run workshops: how does work come in, how does it get delivered, how does it get paid? Walk the workflow and let the client see their own business in it."}
+],
+quiz:[
+ {q:"Insurance supplements belong to which pipeline?",o:["Lead Intake","Inspection & Sales","Production","Revenue"],a:2,e:"Supplements are part of pre-production, at the start of Production."},
+ {q:"Ordering roof measurements happens in which pipeline?",o:["Lead Intake","Inspection & Sales","Production","Revenue"],a:1,e:"Measurements are taken during inspection, ahead of the proposal."},
+ {q:"Syncing invoices and payments to QuickBooks Online happens in…",o:["Lead Intake","Inspection & Sales","Production","Revenue"],a:3,e:"Revenue covers invoicing, collecting and the accounting sync."},
+ {q:"What’s the order of the four pipelines?",o:["Lead Intake, Inspection & Sales, Production, Revenue","Inspection & Sales, Lead Intake, Revenue, Production","Lead Intake, Production, Inspection & Sales, Revenue","Revenue, Lead Intake, Inspection & Sales, Production"],a:0,e:"Blue, gold, orange, green: comes in, gets delivered, gets paid."}
+]},
+{n:3,title:"Zuper basics",lede:"What Zuper replaces, who uses which app, the objects everything is built on, and how we model a job.",
+scenes:[
+ {k:"pairs",rows:[["AccuLynx, JobNimbus, Roofr","Jobs & pipelines"],["Aircall","Zuper Connect"],["CompanyCam","Photo feed & albums"],["SumoQuote, Ingage","Zuper CPQ"],["BusyBusy","Timesheets"],["Slack","Chat"]],connects:[["Measurements","EagleView, Hover, GAF QuickMeasure, RoofScope"],["Accounting","QuickBooks Online"],["Marketing CRM","HubSpot"],["Financing","Service Finance, Sunlight, Wisetack"]],cap:"Roofers juggle six to eight tools. Zuper replaces the roofing CRM, the phone system, the photo app, the estimating tool, timesheets and chat. It <b>connects</b> to measurement providers, financing partners, and accounting, where we only recommend <b>QuickBooks Online</b>."},
+ {k:"cards",h:"Three seats, three experiences",cols:3,items:[["The office · web app","Admins configure, CSRs create jobs, dispatchers schedule crews, accounting invoices and collects."],["The field · mobile app","Reps run inspection checklists; crews work service tasks, take photos and log time. Works offline."],["The homeowner","Gets texts and emails, reviews and e-signs proposals, pays by link, books from the website widget."]],cap:"Three groups touch Zuper. The <b>office</b> lives in the web app. The <b>field</b> lives in the mobile app, which works offline. The <b>homeowner</b> never logs in, but sees Zuper in every text, proposal and payment link. When you design anything, ask which seat it serves."},
+ {k:"cards",h:"Twelve objects everything is built on",cols:4,items:[["Customer","The homeowner or contact"],["Property","The address being roofed"],["Organization","Builder, HOA, property manager"],["Job","The unit of work that moves through pipelines"],["Job category","The type: Replacement, Repair…"],["Job status","Where it sits; changes trigger automations"],["Service tasks","The crew’s step list on site"],["Checklist","Inspection questions answered in the field"],["Proposal","The offer the homeowner signs online"],["Invoice","The bill; payments recorded against it"],["MR & PO","What to order, and the order to the supplier"],["Parts & services","The catalog every price comes from"]],cap:"Learn these twelve nouns like a language. The <b>job</b> is the centre; its <b>category</b> decides its statuses, tasks and fields, and <b>status changes</b> trigger automations and CPQ templates. If a product isn’t in <b>parts and services</b>, it can’t be priced."},
+ {k:"jobbar",cap:"Our team uses <b>one job with many appointments</b>. The lead stage has no appointment; inspection adds one; production adds one per visit; revenue has none. One job means one history and clean reporting. You may meet the older parent-child model on some accounts, but it isn’t our standard."}
+],
+quiz:[
+ {q:"Where does a crew’s step-by-step list live?",o:["Checklist","Service tasks","Custom fields","Job card template"],a:1,e:"Service tasks load from the job category and track the crew’s progress."},
+ {q:"How does our team model a roofing job?",o:["A parent job with child jobs for each stage","One job, with appointments added as it moves through the pipelines","A new job for every status","A project per customer"],a:1,e:"One job, many appointments: one history, one set of photos, clean reporting."},
+ {q:"What usually triggers automations, notifications and CPQ templates?",o:["A job status change","A user logging in","A photo upload","A timesheet entry"],a:0,e:"Status changes are the main trigger in Zuper."},
+ {q:"Which accounting integration do we recommend to clients?",o:["QuickBooks Desktop","QuickBooks Online","Either, equally","None"],a:1,e:"We only recommend QuickBooks Online (QBO)."},
+ {q:"An inspector finds storm damage on a Replacement job. What happens?",o:["Create a brand-new job","After the checklist is submitted, it switches to Insurance Replacement and an adjuster appointment is booked","Mark the job Lost","Nothing changes"],a:1,e:"Line items and details carry over, visible in status history."}
+]},
+{n:4,title:"Where do I do what",lede:"The web app’s main areas and the settings you’ll open every day.",
+scenes:[
+ {k:"cards",h:"Ten places in the left menu",cols:5,items:[["Jobs","Create, track, kanban by status"],["Dispatch","Schedule board, crews, live map"],["Customers","Contacts, organizations, properties"],["Accounting","Proposals, quotes, invoices"],["Purchasing","Material requests, POs, work orders"],["Inventory","Parts & services, bundles, pricelists"],["Timesheets","Time logs and time off"],["Reports","Report builder, dashboards, Zuper Sense"],["Connect","Calls, texts, transcripts"],["Settings","Everything you configure"]],cap:"Your mental map of the web app. <b>Jobs</b> for work, <b>Dispatch</b> for scheduling, <b>Customers</b>, <b>Accounting</b> for proposals and invoices, <b>Purchasing</b> for materials, <b>Inventory</b> for the catalog, <b>Timesheets</b>, <b>Reports</b>, <b>Connect</b> for calls, and <b>Settings</b>, where we spend most implementation time."},
+ {k:"paths",h:"Settings for jobs and costing",rows:[["Job categories & statuses",["Settings","Modules","Jobs","Job Category Hub"]],["Custom fields on jobs",["Settings","Modules","Jobs","Custom Fields"]],["Service tasks",["Settings","Modules","Jobs","Service Tasks"]],["Checklists",["Settings","Modules","Jobs","Inspection Forms"]],["Margin or markup",["Settings","Jobs","Job Costing & Expenses"]]],cap:"The job side of configuration. <b>Job Category Hub</b> holds categories and their statuses. Custom fields, service tasks and inspection forms sit beside it. <b>Job Costing and Expenses</b> is where the account chooses margin or markup. Paths can move between UI releases; if one has, search Settings or check docs.zuper.co."},
+ {k:"paths",h:"Settings for quoting, data and automation",rows:[["CPQ proposal templates",["Quotes & Invoice","Zuper IQ","Proposal Templates"]],["Formula library",["Quotes & Invoice","Zuper IQ","Formula Library"]],["Proposal PDF look",["Quotes & Invoice","Proposal Layout Builder"]],["Bulk data upload",["Settings","Data Administration","Data Import"]],["Automations",["Workflow Builder","Trigger","Actions"]]],cap:"Quoting lives in <b>Zuper IQ</b>, under Settings, Modules, Quotes and Invoice: proposal templates, the formula library and financing. The <b>Proposal Layout Builder</b> controls the PDF. <b>Data Import</b> is how we bulk-upload during migration, and <b>Workflow Builder</b> holds automations."}
+],
+quiz:[
+ {q:"Where do you create job categories and their statuses?",o:["Settings › Modules › Jobs › Job Category Hub","Accounting › Quotes","Inventory › Pricelists","Settings › Developer Hub"],a:0,e:"Job Category Hub defines each category and its pipeline statuses."},
+ {q:"Where do CPQ formulas live?",o:["Zuper IQ › Formula Library","Inventory › Parts & services","Jobs › Custom Fields","Timesheets"],a:0,e:"Settings › Modules › Quotes & Invoice › Zuper IQ › Formula Library."},
+ {q:"Where do you set whether the account uses margin or markup?",o:["Job Costing & Expenses","Proposal Layout Builder","Data Import","Service Territory"],a:0,e:"Settings › Jobs › Job Costing & Expenses."},
+ {q:"How do you bulk-upload a client’s customer list?",o:["Settings › Data Administration › Data Import","Developer Hub › Webhooks","Email Templates","Workflow Builder"],a:0,e:"Data Import handles customers, catalogs and jobs during migration."}
+]},
+{n:5,title:"The workflow in Zuper",lede:"The four pipelines end to end, with a close look at CPQ, the crew app and automation.",
+scenes:[
+ {k:"flow",c:1,h:"Turn every enquiry into a job",steps:[["Lead arrives","Call, website widget, Google or Meta Ads, canvassing"],["Records created","Customer, property, and a lead job"],["Job saved","Needs title, category, and a date"],["Next status","Appointment Scheduled, or Unqualified"]],cap:"<b>Lead Intake.</b> Leads arrive by phone through Zuper Connect, the website widget, ad sources like <b>Google Ads and Meta Ads</b>, or canvassing. Every job needs three things to save: a <b>title</b>, a <b>category</b>, and a <b>due date or start and end dates</b>."},
+ {k:"flow",c:2,h:"Inspect, measure, propose",steps:[["On site","On My Way, then Arrived"],["Checklist & photos","Roof type, layers, damage, penetrations"],["Measurements","EagleView, Hover, GAF QuickMeasure"],["Proposal","Auto-built on the trigger status"],["Signed","Won, or Lost"]],cap:"<b>Inspection and Sales.</b> The rep runs the checklist and takes photos on the mobile app. Measurements arrive as <b>tokens</b> on the job. When the job reaches the template’s trigger status, CPQ builds the proposal; the homeowner chooses, pays any deposit and e-signs."},
+ {k:"flow",c:2,h:"CPQ: from measurement to signature",steps:[["Measurement report","Areas and edge lengths as tokens"],["Formula library","Tokens become quantities"],["Proposal template","Options, items, rules, add-ons"],["Proposal","Generated automatically"],["Customer signs","Chooses, configures, pays, signs"]],cap:"<b>CPQ</b> means configure, price, quote. We configure the template once per client. Formulas price every job from its own measurements. The quote is the proposal the rep sends. For roof replacements it’s CPQ; standard templates suit only simple fixed-price jobs."},
+ {k:"formula",cap:"A real formula: field shingles equal <b>CEIL of roof area times one plus waste, divided by 33</b>. Two thousand square feet plus ten percent waste is 2,200; divided by 33 is 66.7; round up to <b>67 bundles</b>. Always test formulas against a real measurement report before publishing."},
+ {k:"bars",cap:"Ask this before any pricing work: <b>margin or markup?</b> Same job, $70 cost, $100 price. Profit over price is a <b>30% margin</b>. Profit over cost is a <b>42.9% markup</b>. Clients often mix them up, and the wrong one throws off every proposal."},
+ {k:"flow",c:3,h:"Order it, build it, check it",steps:[["Job file & supplements",""],["Material request → PO",""],["Crew scheduled",""],["Materials dropped",""],["Tear-off, dry-in, install",""],["QC walkthrough & sign-off",""]],cap:"<b>Production.</b> Pre-production paperwork and supplements, a <b>material request</b> that becomes a <b>purchase order</b>, the crew scheduled and materials dropped. Then tear-off, dry-in and install, and a quality walkthrough. Each production visit is an appointment on the same job."},
+ {k:"phone",cap:"The crew’s view. They set <b>On My Way</b> and <b>Arrived</b>, work the <b>service tasks</b> in order, add photos, log time, and keep working offline. When every task is checked off, they close the job. Keep field forms short: every question is asked on a roof."},
+ {k:"flow",c:4,h:"Invoice it, collect it, close it",steps:[["Convert to invoice","Accounting › Quotes › More Actions"],["Send","Email with a payment link"],["Collect","Zuper Pay: tap, card, ACH; plus carrier payments"],["Sync","QuickBooks Online"],["Close","Paid & Closed"]],cap:"<b>Revenue.</b> The accepted quote converts to an invoice with line items carried over. Payment comes by link or <b>Zuper Pay</b> in the field; insurance jobs add carrier payments and the deductible. Everything syncs to <b>QuickBooks Online</b>, and the job ends at Paid and Closed."},
+ {k:"cards",h:"Statuses drive everything else",cols:2,items:[["Workflow Builder","A trigger, then actions: text the homeowner, create an appointment, update a field, notify the team."],["Drip campaigns","Follow-up sequences for leads from Google Ads, Meta Ads and other external sources. Built today as custom workflows for specific customers."],["Customer notifications","Email and SMS at key moments. Business texting needs 10DLC registration first."],["Zuper Sense & AI agents","Plain-English questions and dashboards; the CSR Agent answers calls and books inspections."]],cap:"Automation hangs off status changes. <b>Workflow Builder</b> chains actions to a trigger. <b>Drip campaigns</b>, especially for ad-sourced leads from Google and Meta, are currently built as <b>custom workflows for specific customers</b>, so scope them case by case. Check release notes before promising any AI agent."}
+],
+quiz:[
+ {q:"Which fields must be filled to save a job?",o:["Title, category, and a due date or start and end dates","Customer, phone and email","Title, crew and price","Category, status and a tag"],a:0,e:"Miss any one and Zuper won’t create the job."},
+ {q:"2,000 sq ft roof, 10% waste, 33 sq ft per bundle. How many bundles?",o:["60","66","67","73"],a:2,e:"2,000 × 1.10 = 2,200; ÷ 33 = 66.7; round up to 67."},
+ {q:"A CPQ line item’s quantity comes out blank or zero. What happens?",o:["The proposal fails","The item is removed from the proposal","The item shows at $0","The rep gets an alert"],a:1,e:"Use this on purpose: a zero checklist quantity drops items without complex rules."},
+ {q:"$70 cost, $100 price. The 30% figure is the…",o:["Markup","Margin","Both","Neither"],a:1,e:"Profit ÷ price is margin (30%). Markup is profit ÷ cost (42.9%)."},
+ {q:"Base underlayment is $130 and the upgrade is $180. Price the add-on at…",o:["$180","$130","$50","$310"],a:2,e:"Add-ons are priced as the difference from the base item."},
+ {q:"How do we deliver drip campaigns for leads from Google Ads or Meta Ads today?",o:["A built-in drip module","Custom workflows for specific customers","Through QuickBooks Online","We don’t"],a:1,e:"They’re custom workflows today, scoped case by case."}
+]},
+{n:6,title:"How we implement",lede:"How a new client goes live, the rules we’ve learned, and the limits to name early.",
+scenes:[
+ {k:"flow",h:"From kickoff to go-live in 4–6 weeks",cols:5,steps:[["Kickoff",""],["Lead Intake workshop",""],["Inspection workshop",""],["Production workshop",""],["Revenue workshop",""],["Add-ons","Connect, CSR Agent, Pay"],["Data validation","And migration"],["Training","Dry runs, soft launch"],["Go live",""]],cap:"A kickoff, then <b>four workshops, one per pipeline</b>, in order. Then add-ons, data validation and migration, training with a soft launch, and go-live, typically in <b>four to six weeks</b>. We configure, migrate and train; the client attends, validates and gets every user to training."},
+ {k:"compare",h:"Two migration paths, set by the source system",left:{t:"From JobNimbus",color:"#6fa3e6",rows:[["How","Zuper’s in-app migration tool"],["What moves","All jobs, not just active ones, with their quotes and invoices"],["Statuses","Keep the JobNimbus statuses, or map them to Zuper statuses in one unified set"]]},right:{t:"From other CRMs",color:"#f08a52",rows:[["First","Migrate the completed jobs"],["Active jobs","Finish in the old system"],["After the cutover date","Migrate the delta: jobs completed since the first run"]]},cap:"Migration depends on the source system. From <b>JobNimbus</b>, Zuper’s in-app migration tool brings over <b>all jobs</b> with their quotes and invoices, on their JobNimbus statuses or mapped to Zuper statuses. From <b>any other CRM</b>, we migrate <b>completed jobs</b>, let active jobs finish in the old system, agree a <b>cutover date</b>, then migrate the <b>delta</b> of jobs completed since."},
+ {k:"cards",h:"Eight golden rules",cols:4,items:[["10DLC on day one","SMS registration is the most common go-live blocker"],["Keep a wishlist","Park custom asks until after go-live"],["Migrate by source","JobNimbus: all jobs. Others: completed jobs, then the delta"],["Margin or markup?","Ask before any pricing formula"],["Test with real reports","Real measurements, not made-up numbers"],["Zero means gone","Blank quantities drop items"],["Edits don’t travel back","Sent proposals don’t update"],["One pipeline at a time","Build muscle memory in stages"]],cap:"Eight rules from real projects. Start <b>10DLC</b> on day one. Keep a <b>wishlist</b> against scope creep. Match the <b>migration</b> to the source system. Ask <b>margin or markup</b>. Test with <b>real reports</b>. Remember zero means gone, edits don’t travel back, and go live <b>one pipeline at a time</b>."},
+ {k:"cards",h:"Know the limits and say them early",cols:2,items:[["Not a marketing CRM","Granular ad tracking from Google or Meta stays in a tool like HubSpot; leads sync into Zuper."],["Inspection comes first","The flow is inspection, proposal, approval. Contract-first selling needs a workaround."],["No per-line cost breakdown in CPQ","Use roll-up bundles per product."],["Not plug and play","Zuper is configurable, so someone at the client must own it."]],cap:"Credibility comes from knowing the limits. Zuper isn’t a <b>marketing CRM</b> for ad tracking. The flow puts <b>inspection first</b>. CPQ needs <b>roll-up bundles</b> for per-line costs. And it needs an owner at the client. Not sure? Say “let me confirm”, never guess yes."}
+],
+quiz:[
+ {q:"When should 10DLC registration start?",o:["At kickoff, on day one","After go-live","During training week","Only if the client asks"],a:0,e:"It takes time and blocks business texting if left late."},
+ {q:"A client is moving from JobNimbus. What does Zuper’s in-app migration tool bring over?",o:["Only the active jobs","All jobs with their quotes and invoices, on their JobNimbus statuses or mapped to Zuper statuses","Only the customer list","Only paid invoices"],a:1,e:"From JobNimbus we migrate everything, and agree the status mapping with the client first."},
+ {q:"A client is moving from a CRM other than JobNimbus. What’s the plan?",o:["Migrate every job on day one","Migrate completed jobs, let active jobs finish in the old system, then migrate the delta after the cutover date","Migrate active jobs only","Migrate nothing"],a:1,e:"Nothing in progress gets split across two systems. After cutover, we pick up the jobs completed since the first run."},
+ {q:"A client asks for a custom feature mid-project. Best move?",o:["Build it now","Add it to the wishlist and revisit after go-live","Refuse it for good","Quietly extend the timeline"],a:1,e:"Scope creep is the number one cause of delays."},
+ {q:"Which of these is Zuper not built to be?",o:["A job management system","A granular marketing CRM for ad tracking","A proposal tool","A field app"],a:1,e:"Keep ad tracking in a tool like HubSpot and sync leads in."}
+]}
+];
+const CASES=[
+{n:1,name:"Lakeside Exteriors",tag:"A retail roofer switching systems",
+facts:[["Team","22 people, 3 crews"],["Work mix","90% retail replacements"],["Today’s tools","JobNimbus, Aircall, CompanyCam, QuickBooks Desktop, spreadsheets for estimates"],["Goal","Good / Better / Best proposals at the kitchen table"]],
+situation:"The owner, Dana, has run JobNimbus for six years. Reps build estimates in a spreadsheet, so prices vary rep to rep. Dana wants every proposal to come out of Zuper automatically from the roof measurements, and wants to go live before spring.",
+quiz:[
+ {q:"Dana says, “We run QuickBooks Desktop, so just connect that.” What do you recommend?",o:["Connect QuickBooks Desktop as-is","Move to QuickBooks Online, the only accounting integration we recommend","Skip accounting until after go-live","Export invoices to a spreadsheet"],a:1,e:"We only recommend QuickBooks Online. Raise it at kickoff so the move is planned, not a surprise."},
+ {q:"Dana says, “We price everything at 30% margin.” What do you do before writing formulas?",o:["Set 30% markup, since that’s what roofers mean","Confirm margin or markup with a worked example, then set it in Job Costing & Expenses","Use whatever Zuper defaults to","Ask the reps instead"],a:1,e:"$70 cost and $100 price is 30% margin but 42.9% markup. Confirm with numbers, then configure."},
+ {q:"Dana wants all six years of JobNimbus jobs in Zuper. Your advice?",o:["Migrate active jobs only and keep history in JobNimbus","Use Zuper’s in-app JobNimbus migration tool to bring over all jobs, quotes and invoices, after agreeing how JobNimbus statuses map to Zuper statuses","Start fresh with no history","Migrate completed jobs and wait for a cutover date"],a:1,e:"Coming from JobNimbus, the in-app tool migrates everything. The completed-jobs-plus-cutover approach is for other CRMs."},
+ {q:"Where will Lakeside’s Good / Better / Best options be built?",o:["Inventory › Pricelists","A CPQ proposal template in Zuper IQ","Job custom fields","Workflow Builder"],a:1,e:"Each tier is an option in a CPQ proposal template, priced by formulas from the measurement tokens."},
+ {q:"In testing, Zuper proposals come out a few bundles short of Dana’s old estimates. What do you check first?",o:["The proposal PDF layout","The waste factor in the shingle formula","The customer’s address","The crew’s timesheets"],a:1,e:"Missing or low waste is the usual cause. Test formulas against real measurement reports before publishing."}
+],
+open:{prompt:"Lakeside has four workshops ahead. For each pipeline, name one thing you’d need Dana to confirm.",model:["Lead Intake: lead sources, who answers calls, and what makes a lead qualified","Inspection & Sales: the inspection checklist, which measurement provider, and the Good / Better / Best products and prices","Production: material ordering process, supplier, crew scheduling and the service task list","Revenue: deposit rules, payment methods, and the move to QuickBooks Online"]}},
+{n:2,name:"Ironclad Storm Restoration",tag:"An insurance-heavy storm chaser",
+facts:[["Team","40 people, 8 sales reps"],["Work mix","75% insurance, 25% retail"],["Lead source","Door knocking after hail storms"],["Pain","Supplements and payments get lost in email"]],
+situation:"After a big hail storm, Ironclad’s reps knock doors, inspect roofs and help homeowners file claims. Many jobs start as retail and turn out to be insurance. Office staff chase carriers for supplements and track checks in a spreadsheet.",
+quiz:[
+ {q:"A rep inspecting a retail Replacement job finds hail damage. In our setup, what happens?",o:["Close the job and create a new insurance job","After the checklist is submitted, switch it to Insurance Replacement and book an adjuster appointment","Leave it as Replacement","Mark it Lost"],a:1,e:"One job throughout: line items and details carry over, visible in status history."},
+ {q:"Which pipeline do Ironclad’s supplements belong to?",o:["Lead Intake","Inspection & Sales","Production","Revenue"],a:2,e:"Supplements are part of pre-production, before materials are ordered."},
+ {q:"A homeowner on an ACV policy asks why they owe more than their deductible. Why?",o:["The roofer added fees","ACV pays the depreciated value, so the homeowner covers the depreciation gap","The adjuster made an error","Taxes"],a:1,e:"ACV pays actual cash value. RCV pays full replacement cost. Always clarify the policy type before quoting."},
+ {q:"The carrier pays in two checks, and the homeowner pays the deductible. How is that tracked?",o:["Three separate invoices","Partial payments recorded against one invoice","A note in the activity log","Outside Zuper"],a:1,e:"Record each payment as it arrives; the invoice and job status update as it’s paid down."}
+],
+open:{prompt:"List the custom fields you’d add to Ironclad’s Insurance Replacement jobs, and why each matters.",model:["Insurance carrier and claim number, to find the claim fast","Policy type (ACV or RCV), because it changes what the homeowner owes","Adjuster name and appointment date, for the adjuster meeting","Deductible amount, for the homeowner’s invoice","Supplement status and amount, to track money still to recover"]}},
+{n:3,name:"Summit Ridge Roofing",tag:"A roofer growing through paid ads",
+facts:[["Team","15 people"],["Lead sources","Google Ads, Meta Ads, website form"],["Today’s tools","HubSpot for marketing, phone app for calls"],["Pain","Ad leads go cold before anyone calls back"]],
+situation:"Summit Ridge spends heavily on Google and Meta ads. Leads arrive at all hours, and half are never booked. The marketing manager wants automatic follow-up texts and wants to see which ad campaign produced each signed job.",
+quiz:[
+ {q:"The marketing manager wants campaign-level ad attribution inside Zuper. What do you say?",o:["Zuper tracks every campaign natively","Keep ad tracking in HubSpot and sync leads into Zuper","Build a custom report for it","Say it’s on the roadmap"],a:1,e:"Zuper isn’t a marketing CRM. Granular ad tracking stays top-of-funnel; Zuper runs the job from there."},
+ {q:"They want automatic follow-up texts to unbooked ad leads. How do we deliver drip campaigns today?",o:["A built-in drip module","Custom workflows for specific customers, scoped case by case","Through QuickBooks Online","We can’t"],a:1,e:"Drips, especially for Google and Meta Ads leads, are built as custom workflows. Scope them early."},
+ {q:"Two weeks before go-live, test texts aren’t sending. What was likely missed?",o:["The proposal layout","10DLC registration, which should start at kickoff","A service territory","The crew’s mobile app"],a:1,e:"Business texting needs 10DLC approval, and it takes time. It’s the most common go-live blocker."},
+ {q:"Calls after 6 pm go to voicemail and the leads are lost. What can help?",o:["A longer ring time","The CSR Agent, which answers overflow and after-hours calls and books inspections","An email template","More reps"],a:1,e:"The CSR Agent runs inside Zuper on Zuper Connect. Check current availability in the release notes."}
+],
+open:{prompt:"Sketch a three-step drip for an ad lead that hasn’t booked an inspection. Name the trigger and each action.",model:["Trigger: a lead job from Google or Meta Ads sits in New Lead with no appointment","Step 1, within minutes: text introducing the company with a booking link","Step 2, next day: text or email with a short reason to book (free inspection, financing available)","Step 3, a few days later: alert the assigned rep to call; stop the drip once an appointment is booked","Confirm 10DLC is approved before any texts go out"]}},
+{n:4,name:"Northgate Roofing",tag:"Go-live week troubleshooting",
+facts:[["Stage","First week live"],["Team","30 users across office and field"],["Setup","CPQ templates, one-job model, QuickBooks Online"],["Mood","Busy, and the owner is watching closely"]],
+situation:"Northgate went live on Monday. By Wednesday your inbox has a handful of questions from the office manager, a sales rep and the owner. Work out what’s happening in each case.",
+quiz:[
+ {q:"A rep says, “Zuper won’t let me save a new job.” What do you check?",o:["Their internet speed","The job title, category and due or start/end date, then their create-job permission","The proposal template","QuickBooks Online"],a:1,e:"Those three fields are mandatory, and users also need create-job rights."},
+ {q:"A proposal is missing the ridge vent line entirely. The likeliest cause?",o:["The item was deleted from the catalog","Its quantity came out blank or zero, so CPQ dropped it","The PDF cut it off","The customer removed it"],a:1,e:"A blank or zero quantity removes the item. Check the token or checklist field its formula uses."},
+ {q:"The proposal preview shows “Missing Required Job Fields.” What does it mean?",o:["The job lacks data the CPQ template needs","The customer has no email","The user lacks a licence","The template is unpublished"],a:0,e:"Usually a missing measurement or custom field. Fill it in on the job and regenerate."},
+ {q:"The owner edited a formula yesterday. A proposal sent last week still shows the old quantity. Why?",o:["A bug","Formula edits don’t update proposals already sent","The cache needs clearing","The rep overrode it"],a:1,e:"Edits apply going forward only. Regenerate or recreate the proposal if it must change."},
+ {q:"Mid-week, the owner asks for a custom commission dashboard. Best response?",o:["Build it tonight","Add it to the wishlist and plan it after go-live settles","Refuse","Delay go-live"],a:1,e:"Protect go-live. The wishlist keeps the request visible without derailing the week."}
+],
+open:{prompt:"Write a short reply to the owner explaining why last week’s proposal didn’t change after the formula edit.",model:["Acknowledge the question and confirm the new formula is working","Explain that formula changes apply to proposals created from now on; sent proposals keep the numbers the customer saw","Offer the fix: regenerate or recreate that proposal and resend it","Suggest testing formula changes on a sample job before editing live templates"]}}
+];
+const words=s=>s.replace(/<[^>]+>/g,"").split(/\s+/).length;
+const dur=sc=>Math.min(26,Math.max(9,words(sc.cap)/2.6+3));
+const partMins=p=>Math.max(1,Math.round(p.scenes.reduce((a,s)=>a+dur(s),0)/60));
+
+/* ---------------- roof progress ---------------- */
+function roofSVG(cur,big){
+  const H=140/6,xl=y=>10+(170-y)/140*90,xr=y=>250-(170-y)/140*90;
+  let c="";
+  for(let k=0;k<6;k++){
+    const yb=170-k*H,yt=yb-H,n=k+1,d=!!store.done[n],isCur=cur===n;
+    const pts=`${xl(yb).toFixed(1)},${yb.toFixed(1)} ${xr(yb).toFixed(1)},${yb.toFixed(1)} ${xr(yt).toFixed(1)},${yt.toFixed(1)} ${xl(yt).toFixed(1)},${yt.toFixed(1)}`;
+    c+=`<polygon points="${pts}" style="fill:${d?"url(#tabs)":"var(--course-empty)"};stroke:${isCur?"var(--accent)":"var(--bg)"};stroke-width:${isCur?3:2}"><title>Part ${n}: ${PARTS[k].title}${d?" (done)":""}</title></polygon>`;
+  }
+  const all=PARTS.every(p=>store.done[p.n]);
+  return `<svg viewBox="0 0 260 205" role="img" aria-label="Roof progress: ${countDone()} of 6 courses laid">
+  <defs><pattern id="tabs" patternUnits="userSpaceOnUse" width="18" height="${H.toFixed(2)}" y="${(170%H).toFixed(2)}"><rect width="18" height="${H.toFixed(2)}" style="fill:var(--shingle)"/><line x1="17" y1="3" x2="17" y2="${H.toFixed(2)}" style="stroke:var(--bg);stroke-width:1.5;opacity:.55"/></pattern></defs>
+  <rect x="36" y="170" width="188" height="32" rx="2" style="fill:var(--surface2)"/><rect x="118" y="180" width="24" height="22" style="fill:var(--course-empty)"/>
+  ${c}<rect x="${(xl(30)-6).toFixed(1)}" y="22" width="${(xr(30)-xl(30)+12).toFixed(1)}" height="9" rx="3" style="fill:${all?"#e0652b":"var(--course-empty)"}"><title>Ridge cap: finish all six parts</title></rect></svg>`;
+}
+const countDone=()=>PARTS.filter(p=>store.done[p.n]).length;
+const caseDone=()=>CASES.filter(c=>store.cases[c.n]!=null).length;
+
+function paintTeamNav(){const a=document.getElementById("teamNav");if(a)a.hidden=!ME.canEdit;}
+function curView(){const h=(location.hash||"").replace("#","");return /^part-[1-6]$/.test(h)||/^case-[1-4]$/.test(h)||["cases","finish","training","reference","team"].includes(h)?h:"home";}
+function renderRail(view){
+  const cur=view.startsWith("part-")?+view.slice(5):0;
+  document.body.classList.toggle("wide",view==="home"||view==="reference"||view==="team");
+  const navKey=view.startsWith("part-")?"training":view.startsWith("case-")?"cases":view;
+  document.querySelectorAll(".topnav a[data-nav]").forEach(a=>{if(a.dataset.nav===navKey)a.setAttribute("aria-current","page");else a.removeAttribute("aria-current");});
+  const tot=PARTS.length+CASES.length,got=countDone()+caseDone();
+  document.getElementById("topMeter").innerHTML=`<span class="meter" aria-hidden="true"><i style="width:${Math.round(got/tot*100)}%"></i></span><span>${countDone()}/6 parts · ${caseDone()}/${CASES.length} cases</span>`;
+  document.getElementById("railRoof").innerHTML=roofSVG(cur);
+  const n=countDone();
+  document.getElementById("railStat").textContent=n===6?"All six courses laid. The roof is on.":`${n} of 6 courses laid`;
+  document.getElementById("navList").innerHTML=PARTS.map(p=>{const d=store.done[p.n];return `<li><button type="button" class="navbtn ${d?"done":""}" data-go="part-${p.n}" ${cur===p.n?'aria-current="page"':""}><span class="navnum" aria-hidden="true">${d?"✓":p.n}</span><span>${p.title}</span>${d?`<span class="navscore">${store.best[p.n]}/${p.quiz.length}</span>`:""}</button></li>`}).join("")+
+  `<li><button type="button" class="navbtn ${caseDone()===CASES.length?"done":""}" data-go="cases" ${(view==="cases"||view.startsWith("case-"))?'aria-current="page"':""}><span class="navnum" aria-hidden="true">${caseDone()===CASES.length?"✓":"?"}</span><span>Case studies</span><span class="navscore">${caseDone()}/${CASES.length}</span></button></li>`+
+  `<li><button type="button" class="navbtn" data-go="finish" ${view==="finish"?'aria-current="page"':""}><span class="navnum" aria-hidden="true">★</span><span>My progress</span></button></li>`;
+}
+
+/* ---------------- narration + player ---------------- */
+let P=null;
+const BTTS=("speechSynthesis" in window)&&typeof window.SpeechSynthesisUtterance==="function";
+const NARR={kind:BTTS?"browser":null,t:null};
+const CVOICES=[["buttery","Warm"],["airy","Airy"],["glassy","Clear"],["rounded","Rounded"]];
+cu("tts").then(t=>{if(t){NARR.kind="claude";NARR.t=t;try{t.onState(({state,reason})=>{if(state==="idle"&&reason==="not_granted"){NARR.kind=null;NARR.t=null;repaintNarr();}});}catch(e){}try{t.setRate&&t.setRate(+store.voice.rate||1);}catch(e){}}repaintNarr();});
+const narrOn=()=>!!NARR.kind&&store.voice.on;
+function enVoices(){if(!BTTS)return[];try{return speechSynthesis.getVoices().filter(v=>/^en([-_]|$)/i.test(v.lang));}catch(e){return[];}}
+function pickVoice(){const vs=enVoices();if(!vs.length)return null;const byName=vs.find(v=>v.name===store.voice.name);if(byName)return byName;
+  const pref=[/natural/i,/google us english/i,/samantha/i,/aria/i,/jenny/i,/guy/i,/daniel/i,/google uk english female/i];
+  for(const r of pref){const v=vs.find(v=>r.test(v.name));if(v)return v;}return vs.find(v=>/en[-_]US/i.test(v.lang))||vs[0];}
+const plain=h=>h.replace(/<[^>]+>/g,"").replace(/&amp;/g,"&").replace(/\s+/g," ").trim();
+function nStop(){if(NARR.kind==="claude"&&NARR.t){NARR.t.stop().catch(()=>{});}else if(NARR.kind==="browser"){try{speechSynthesis.cancel();}catch(e){}}}
+function nPause(){if(NARR.kind==="claude"&&NARR.t){NARR.t.pause().catch(()=>{});return true;}nStop();return false;}
+function nResume(){if(NARR.kind==="claude"&&NARR.t)NARR.t.resume().catch(()=>{});}
+function nSpeak(text,done){
+  if(NARR.kind==="claude"&&NARR.t){NARR.t.speak(text,{voice:store.voice.cvoice||"buttery",rate:+store.voice.rate||1,language:"en"}).then(()=>done(),e=>{if(e&&e.code==="not_granted"){NARR.kind=null;NARR.t=null;repaintNarr();}done();});return;}
+  if(NARR.kind==="browser"){try{speechSynthesis.cancel();}catch(e){}const v=pickVoice();const parts=text.split(/(?<=[.!?])\s+/).filter(Boolean);
+    parts.forEach((t,k)=>{const u=new SpeechSynthesisUtterance(t);if(v){u.voice=v;u.lang=v.lang;}else u.lang="en-US";u.rate=+store.voice.rate||1;if(k===parts.length-1){u.onend=()=>done();u.onerror=()=>done();}speechSynthesis.speak(u);});return;}
+  done();
+}
+function stopPlayer(){if(P){P.alive=false;P.tok=(P.tok||0)+1;if(P.ro)P.ro.disconnect();}nStop();P=null;}
+function repaintNarr(){
+  const box=document.getElementById("narr");if(!box)return;
+  if(!NARR.kind){box.innerHTML=`<p>Narration isn’t available in this browser. Follow the captions below.</p>`;return;}
+  const isC=NARR.kind==="claude";
+  const vopts=isC?CVOICES.map(([v,l])=>`<option value="${v}" ${store.voice.cvoice===v?"selected":""}>${l}</option>`).join(""):(()=>{const list=enVoices();const cur=pickVoice();return list.length?list.map(v=>`<option value="${esc(v.name)}" ${cur&&cur.name===v.name?"selected":""}>${esc(v.name)}</option>`).join(""):'<option value="">Default voice</option>';})();
+  box.innerHTML=`<button type="button" class="narrbtn" id="narrBtn" aria-pressed="${store.voice.on?"true":"false"}">${store.voice.on?ICON.sound:ICON.mute}${store.voice.on?"Narration on":"Narration off"}</button><label>Voice <select id="voiceSel">${vopts}</select></label><label>Speed <select id="rateSel"><option value="0.9">Slower</option><option value="1">Normal</option><option value="1.15">Faster</option></select></label>${isC?'<span class="narrnote">Claude voice</span>':""}`;
+  document.getElementById("rateSel").value=String(store.voice.rate||1);
+  if(!isC){try{speechSynthesis.onvoiceschanged=()=>{if(NARR.kind==="browser")repaintNarr();};}catch(e){}}
+  document.getElementById("narrBtn").onclick=()=>{store.voice.on=!store.voice.on;saveLocal();repaintNarr();if(!P)return;if(store.voice.on){if(P.playing)P.speakCur();else P.needSpeak=true;}else{P.tok++;nStop();P.pausedMid=false;P.spoken=true;P.spokenAt=P.el;}};
+  document.getElementById("voiceSel").onchange=e=>{if(isC)store.voice.cvoice=e.target.value;else store.voice.name=e.target.value;saveLocal();if(P){if(P.playing&&narrOn())P.speakCur();else{P.needSpeak=!P.spoken||P.needSpeak;}}};
+  document.getElementById("rateSel").onchange=e=>{store.voice.rate=+e.target.value;saveLocal();if(isC&&NARR.t&&NARR.t.setRate){NARR.t.setRate(store.voice.rate).catch(()=>{});}else if(P&&P.playing&&narrOn())P.speakCur();};
+}
+function mountPlayer(part){
+  stopPlayer();
+  const stage=document.getElementById("stage"),cv=document.getElementById("cv"),ov=document.getElementById("ov"),cap=document.getElementById("cap"),dots=document.getElementById("dots"),cnt=document.getElementById("scount"),pb=document.getElementById("playBtn");
+  P={part,i:0,el:0,playing:false,alive:true,last:0,tok:0};
+  const ro=new ResizeObserver(()=>{cv.style.transform=`scale(${stage.clientWidth/1600})`;});ro.observe(stage);P.ro=ro;
+  dots.innerHTML=part.scenes.map((s,i)=>`<button type="button" class="dot" data-i="${i}" aria-label="Scene ${i+1} of ${part.scenes.length}"><i></i></button>`).join("");
+  function speakCur(){
+    P.needSpeak=false;P.spoken=false;P.spokenAt=0;P.pausedMid=false;
+    if(!narrOn()){P.spoken=true;return;}
+    P.tok++;const my=P.tok;
+    nSpeak(plain(part.scenes[P.i].cap),()=>{if(P&&P.tok===my){P.spoken=true;P.spokenAt=P.el;}});
+  }
+  P.speakCur=speakCur;
+  const setPlay=on=>{P.playing=on;stage.classList.toggle("paused",!on);pb.innerHTML=on?ICON.pause:ICON.play;pb.setAttribute("aria-label",on?"Pause":"Play");
+    if(!on){if(!P.spoken&&narrOn()){if(nPause())P.pausedMid=true;else{P.tok++;P.needSpeak=true;}}}
+    else{if(P.pausedMid){P.pausedMid=false;nResume();}else if(P.needSpeak)speakCur();}};
+  function go(i,autoplay=true){
+    P.i=i;P.el=0;P.spoken=false;P.needSpeak=true;P.pausedMid=false;P.tok++;if(!autoplay||!narrOn())nStop();
+    cv.innerHTML=R[part.scenes[i].k](part.scenes[i]);cap.innerHTML=part.scenes[i].cap;
+    [...dots.children].forEach((d,j)=>{d.classList.toggle("past",j<i);d.firstChild.style.width=j<i?"100%":"0%";d.setAttribute("aria-current",j===i?"step":"false");});
+    cnt.textContent=`${i+1} / ${part.scenes.length}`;ov.hidden=true;setPlay(autoplay);
+  }
+  function endOv(){
+    P.tok++;P.pausedMid=false;P.spoken=true;nStop();setPlay(false);ov.hidden=false;
+    if(!store.meta.watched[part.n]){store.meta.watched[part.n]=nowISO();save();}
+    ov.innerHTML=`<div class="ovcard"><p class="ovt">Lesson done</p><p class="ovs">Now check what stuck.</p><div class="ovrow"><button type="button" class="ovbtn" id="ovAgain">Watch again</button><button type="button" class="ovbtn primary" id="ovCheck">Go to the check</button></div></div>`;
+    document.getElementById("ovAgain").onclick=()=>go(0);
+    document.getElementById("ovCheck").onclick=()=>{const c=document.getElementById("check");c.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});const f=c.querySelector(".opt:not(:disabled)");if(f)f.focus({preventScroll:true});};
+    ov.querySelector("#ovCheck").focus();
+  }
+  P.toggle=()=>{if(!ov.hidden&&!P.started){P.started=true;go(0);return;}if(!ov.hidden){go(0);return;}setPlay(!P.playing);};
+  cv.innerHTML=R[part.scenes[0].k](part.scenes[0]);cap.innerHTML=part.scenes[0].cap;cnt.textContent=`1 / ${part.scenes.length}`;P.spoken=true;setPlay(false);P.spoken=false;P.needSpeak=true;
+  document.getElementById("bigplay").onclick=()=>{P.started=true;go(0);stage.focus({preventScroll:true});};
+  pb.onclick=()=>P.toggle();
+  document.getElementById("prevBtn").onclick=()=>{P.started=true;go(Math.max(0,P.i-(P.el>2500?0:1)));};
+  document.getElementById("nextBtn").onclick=()=>{P.started=true;if(P.i<part.scenes.length-1)go(P.i+1);else endOv();};
+  dots.onclick=e=>{const b=e.target.closest(".dot");if(b){P.started=true;go(+b.dataset.i);}};
+  stage.onkeydown=e=>{if(e.key===" "||e.key==="k"){e.preventDefault();P.toggle();}else if(e.key==="ArrowRight"){e.preventDefault();document.getElementById("nextBtn").click();}else if(e.key==="ArrowLeft"){e.preventDefault();document.getElementById("prevBtn").click();}};
+  repaintNarr();
+  const me=P;
+  function loop(t){
+    if(!me.alive)return;const dt=me.last?Math.min(100,t-me.last):0;me.last=t;
+    if(me.playing){me.el+=dt;const d=dur(part.scenes[me.i])*1000;const talk=narrOn();
+      const ready=talk?((me.spoken&&me.el>=Math.max(6000,me.spokenAt+900))||me.el>d*2.6):me.el>=d;
+      const dot=dots.children[me.i];if(dot)dot.firstChild.style.width=(ready?100:Math.min(talk?97:100,me.el/d*100))+"%";
+      if(ready){if(me.i<part.scenes.length-1)go(me.i+1);else endOv();}}
+    requestAnimationFrame(loop);
+  }
+  requestAnimationFrame(loop);
+}
+
+const ICON={
+ play:'<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z" fill="currentColor"/></svg>',
+ pause:'<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h4.5v16H6zM13.5 4H18v16h-4.5z" fill="currentColor"/></svg>',
+ prev:'<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h2.5v14H6zM20 5v14L9 12z" fill="currentColor"/></svg>',
+ next:'<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 5H18v14h-2.5zM4 5v14l11-7z" fill="currentColor"/></svg>',
+ sound:'<svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4zM16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>',
+ mute:'<svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4zM17 9l5 6M22 9l-5 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>',
+ bigplay:'<svg width="34" height="34" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z" fill="currentColor"/></svg>'
+};
+
+const main=document.getElementById("main");
+function nextIncomplete(){const p=PARTS.find(p=>!store.done[p.n]);return p?p.n:0;}
+const ICO={
+ watch:'<svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10 8.5v5l4.5-2.5z" fill="currentColor"/><path d="M8 20h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>',
+ check:'<svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 12.5l2.8 2.8L16.5 9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+ apply:'<svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V9l8-5 8 5v11" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 20v-6h6v6" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>'
+};
+const totalMins=()=>PARTS.reduce((a,p)=>a+partMins(p),0);
+const totalQs=()=>PARTS.reduce((a,p)=>a+p.quiz.length,0)+CASES.reduce((a,c)=>a+c.quiz.length,0);
+function ctaPrimary(){if(store.meta.reviewer&&ME.canEdit)return `<a class="btn" href="#team">Open the team dashboard</a>`;const nx=nextIncomplete(),n=countDone();return n===0?`<a class="btn" href="#part-1">Start the training</a>`:nx?`<a class="btn" href="#part-${nx}">Continue with part ${nx}</a>`:`<a class="btn" href="#finish">See my progress</a>`;}
+function partCards(){return `<ol class="outline">${PARTS.map(p=>`<li><button type="button" data-go="part-${p.n}"><em>Part ${p.n}${store.done[p.n]?` · Completed, ${store.best[p.n]}/${p.quiz.length}`:""}</em><b>${p.title}</b><span>${p.lede}</span><em>${p.scenes.length} narrated scenes · about ${partMins(p)} min · ${p.quiz.length} questions</em></button></li>`).join("")}</ol>`;}
+function renderHome(){
+  main.innerHTML=`<section class="hero"><div class="wrap heroin"><div><p class="eyebrow">${ME.name?`Welcome back, ${esc(ME.name.split(" ")[0])}`:"Solutions Architecture · New joinee program"}</p><h1>Learn roofing and Zuper, end to end.</h1><p class="lead">Narrated lessons, knowledge checks and real-world case studies that take you from how a roof is built to taking a roofing client live on Zuper.</p><div class="row">${ctaPrimary()}<a class="btn ghost" href="#reference">Browse the reference</a></div></div>
+  <div class="herocard">${roofSVG(0)}<p class="hp">${countDone()===6?"All six courses laid. The roof is on.":`Your roof: ${countDone()} of 6 courses laid. Finish a part to add the next one.`}</p></div></div>
+  <div class="wrap"><div class="stats"><div><b>6</b><span>Training parts</span></div><div><b>${CASES.length}</b><span>Case studies</span></div><div><b>~${totalMins()} min</b><span>Narrated lessons</span></div><div><b>${totalQs()}</b><span>Practice questions</span></div></div><div style="height:28px"></div></div></section>
+  <section class="band"><div class="wrap"><div class="sechead"><p class="pnum">How it works</p><h2>Watch it, check it, apply it</h2></div>
+  <div class="how"><div><span class="ic">${ICO.watch}</span><h3>Watch</h3><p>Each part opens with a short animated lesson, narrated and captioned. Pause, replay or skip between scenes.</p></div><div><span class="ic">${ICO.check}</span><h3>Check</h3><p>A quick knowledge check follows every lesson, with the reasoning behind each answer.</p></div><div><span class="ic">${ICO.apply}</span><h3>Apply</h3><p>Case studies put you in front of realistic clients. Make the calls, then compare with a model answer.</p></div></div></div></section>
+  <section class="band alt"><div class="wrap"><div class="sechead"><p class="pnum">The curriculum</p><h2>Six parts, in the order work happens</h2><p class="lede">From roofing basics to running an implementation. Take them in order the first time; come back to any part later.</p></div>${partCards()}</div></section>
+  <section class="band"><div class="wrap"><div class="duo">
+   <div class="feature"><p class="pnum">Case studies</p><h3>Put it to work</h3><p>Four fictional roofing companies, real implementation situations.</p><ul>${CASES.map(c=>`<li><b>${c.name}</b>: ${c.tag.toLowerCase()}</li>`).join("")}</ul><div class="row"><a class="btn ghost" href="#cases">Open the case studies</a></div></div>
+   <div class="feature"><p class="pnum">Reference</p><h3>Look it up any day</h3><p>Everything you’ll reach for after training, on one page.</p><ul><li>Glossary of roofing and Zuper terms</li><li>Settings cheat sheet with menu paths</li><li>How we advise clients, and how we migrate</li><li>Golden rules and resources</li></ul><div class="row"><a class="btn ghost" href="#reference">Open the reference</a></div></div>
+  </div></div></section>`;
+}
+function renderTraining(){
+  main.innerHTML=`<header class="phead"><p class="pnum">Training</p><h1>The curriculum</h1><p class="lede">Six narrated lessons, each followed by a knowledge check. Finish a part to lay its course on the roof.</p></header>${partCards()}
+  <p class="tip">Lessons are narrated by your browser’s built-in voice; turn your sound on, or switch narration off and read the captions. <kbd>Space</kbd> plays and pauses, and <kbd>←</kbd> <kbd>→</kbd> move between scenes.</p>
+  <div class="row" style="margin-top:20px">${ctaPrimary()}<a class="btn ghost" href="#cases">Case studies</a></div>`;
+}
+const REF={
+ gloss:[["Square","100 sq ft of roof."],["Bundle","A pack of shingles; usually 3 per square."],["Waste factor","Extra material for cuts, often 10–15%."],["Pitch","Steepness as rise per 12 in, e.g. 8/12."],["Ridge · Hip · Valley","Peak line · sloped outside edge · inside “V”."],["Eave · Rake","Low level edge · sloped gable edge."],["Tear-off","Removing the old roof down to the deck."],["Dry-in","Deck covered and watertight."],["Adjuster","The carrier’s inspector who sets scope."],["Supplement","Request to the carrier for missed items."],["ACV / RCV","Depreciated value / full replacement cost."],["Deductible","The homeowner’s share on a claim."],["GBB","Good / Better / Best proposal options."],["CPQ","Configure, Price, Quote: Zuper’s proposal engine."],["Measurement token","A measured value on the job, used in formulas."],["MR / PO","Material request / purchase order."],["10DLC","US registration required for business texting."],["Cutover date","The day new work moves fully to Zuper."]],
+ settings:[["Job categories & statuses","Settings › Modules › Jobs › Job Category Hub"],["Custom fields on jobs","Settings › Modules › Jobs › Custom Fields"],["Service tasks","Settings › Modules › Jobs › Service Tasks"],["Checklists (inspection forms)","Settings › Modules › Jobs › Inspection Forms"],["Job card layout","Settings › Modules › Jobs › Job Card Template"],["Margin or markup","Settings › Jobs › Job Costing & Expenses"],["CPQ proposal templates","Settings › Modules › Quotes & Invoice › Zuper IQ › Proposal Templates"],["Formula library","… › Zuper IQ › Formula Library"],["Financing options","… › Zuper IQ › Financing Options"],["Proposal PDF look","… › Quotes & Invoice › Proposal Layout Builder"],["Email templates","Settings › Miscellaneous › Email Templates"],["Website instant-estimate widget","Settings › Customer Experience › Website Widget"],["Bulk data upload","Settings › Data Administration › Data Import"],["API keys & webhooks","Settings › Developer Hub"],["Users & teams","Settings › Users & Teams"],["Automations","Workflow Builder: a trigger, then actions"]],
+ practices:[["Accounting","We only recommend QuickBooks Online (QBO). We don’t suggest QuickBooks Desktop."],["Job model","One job with many appointments across the pipelines; Replacement and Insurance Replacement categories."],["Drip campaigns","Built as custom workflows for specific customers, especially for leads from Google Ads, Meta Ads and other external sources."],["Pricing","Always confirm margin or markup with a worked example before writing formulas."],["Ad attribution","Granular campaign tracking stays in a marketing tool like HubSpot; leads sync into Zuper."]],
+ migration:[["From JobNimbus","Zuper’s in-app migration tool brings over all jobs with their quotes, invoices and related records. Jobs keep their JobNimbus statuses, or are mapped to Zuper statuses in one unified set."],["From any other CRM","Migrate completed jobs first. Active, in-progress jobs finish in the old system. Agree a cutover date, then migrate the delta of jobs completed since the first run."]],
+ rules:[["10DLC on day one","SMS registration is the most common go-live blocker."],["Keep a wishlist","Park custom asks until after go-live."],["Migrate by source","JobNimbus: all jobs. Other CRMs: completed jobs, then the delta."],["Margin or markup?","Ask before any pricing formula."],["Test with real reports","Real measurements, never made-up numbers."],["Zero means gone","A blank or 0 quantity drops the item."],["Edits don’t travel back","Formula changes don’t update sent proposals."],["One pipeline at a time","Go live in stages."]],
+ res:[["docs.zuper.co","Help documentation for every module"],["updates.zuper.co","Release notes: what’s new and what’s live"],["developers.zuper.co","API reference for integrations"],["support@zuper.co","Product support"],["Zuper Essentials for Roofing","Weekly community session, Thursdays 11–12 CT"]]
+};
+function renderReference(){
+  const secs=[["ref-practices","How we advise clients"],["ref-migration","Migration"],["ref-settings","Settings cheat sheet"],["ref-pipelines","The four pipelines"],["ref-gloss","Glossary"],["ref-rules","Golden rules"],["ref-res","Resources"]];
+  main.innerHTML=`<section class="band" style="padding-top:48px"><div class="wrap">
+  <header class="phead"><p class="pnum">Reference</p><h1>Look it up any day</h1><p class="lede">The facts you’ll reach for after training. Menu paths follow current docs; if one has moved, search Settings or check docs.zuper.co.</p></header>
+  <ul class="refnav">${secs.map(([id,t])=>`<li><button type="button" data-jump="${id}">${t}</button></li>`).join("")}</ul>
+  <section class="refsec" id="ref-practices"><h2>How we advise clients</h2><table class="reftable"><thead><tr><th scope="col" style="width:26%">Topic</th><th scope="col">Our recommendation</th></tr></thead><tbody>${REF.practices.map(([a,b])=>`<tr><td><b>${a}</b></td><td>${b}</td></tr>`).join("")}</tbody></table></section>
+  <section class="refsec" id="ref-migration"><h2>Migration</h2><div class="duo">${REF.migration.map(([a,b],i)=>`<div class="feature" style="border-top:5px solid ${i?"#e0652b":"#2563a8"}"><h3>${a}</h3><p style="color:var(--ink)">${b}</p></div>`).join("")}</div></section>
+  <section class="refsec" id="ref-settings"><h2>Settings cheat sheet</h2><table class="reftable"><thead><tr><th scope="col" style="width:34%">What you want to change</th><th scope="col">Where it lives</th></tr></thead><tbody>${REF.settings.map(([a,b])=>`<tr><td><b>${a}</b></td><td class="path">${b}</td></tr>`).join("")}</tbody></table></section>
+  <section class="refsec" id="ref-pipelines"><h2>The four pipelines</h2><div class="tiles">${[1,2,3,4].map(n=>`<div class="tile" style="border-top:5px solid ${["","#2563a8","#c98a12","#e0652b","#23784b"][n]}"><span class="n">Pipeline ${n}</span><b>${PN[n]}</b><span>${["","Enquiry to qualified job with an inspection booked.","Inspection, measurements and a signed proposal.","Materials, build and quality walkthrough.","Invoice, collect, sync to QBO and close."][n]}</span></div>`).join("")}</div></section>
+  <section class="refsec" id="ref-gloss"><h2>Glossary</h2><dl class="gloss">${REF.gloss.map(([a,b])=>`<div><dt>${a}</dt><dd>${b}</dd></div>`).join("")}</dl></section>
+  <section class="refsec" id="ref-rules"><h2>Golden rules</h2><div class="tiles">${REF.rules.map(([a,b],i)=>`<div class="tile"><span class="n">${String(i+1).padStart(2,"0")}</span><b>${a}</b><span>${b}</span></div>`).join("")}</div></section>
+  <section class="refsec" id="ref-res"><h2>Resources</h2><table class="reftable"><tbody>${REF.res.map(([a,b])=>`<tr><td style="width:34%"><b>${a}</b></td><td>${b}</td></tr>`).join("")}</tbody></table></section>
+  </div></section>`;
+  main.querySelector(".refnav").onclick=e=>{const b=e.target.closest("[data-jump]");if(!b)return;const t=document.getElementById(b.dataset.jump);if(t){t.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});t.setAttribute("tabindex","-1");t.focus({preventScroll:true});}};
+}
+
+function renderPart(n){
+  const p=PARTS[n-1];
+  main.innerHTML=`<header class="phead"><p class="pnum">Part ${n} of 6</p><h1>${p.title}</h1><p class="lede">${p.lede}</p></header>
+  <section class="player" aria-label="Animated lesson for ${p.title}">
+    <div class="stage paused" id="stage" tabindex="0" aria-label="Lesson stage. Space plays or pauses; arrow keys change scene.">
+      <div class="cv" id="cv" aria-hidden="true"></div>
+      <div class="overlay" id="ov"><div class="ovcard"><button type="button" class="bigplay" id="bigplay" aria-label="Play the lesson">${ICON.bigplay}</button><p class="ovt">Play the lesson</p><p class="ovs">${p.scenes.length} scenes, about ${partMins(p)} min, narrated. Turn your sound on.</p></div></div>
+    </div>
+    <div class="controls"><button type="button" class="ctl" id="prevBtn" aria-label="Previous scene">${ICON.prev}</button><button type="button" class="ctl" id="playBtn" aria-label="Play">${ICON.play}</button><button type="button" class="ctl" id="nextBtn" aria-label="Next scene">${ICON.next}</button><div class="dots" id="dots"></div><span class="scount" id="scount"></span></div>
+    <div class="narr" id="narr"></div>
+    <p class="caption" id="cap" aria-live="polite"></p>
+  </section>
+  <section class="check" id="check" aria-labelledby="checkh"><h2 id="checkh">Check yourself</h2><p class="lede">${p.quiz.length} questions. Answer them all to lay this part’s course on the roof.</p><div id="quiz"></div></section>
+  <nav class="pager" aria-label="Part navigation">${n>1?`<a class="btn ghost" href="#part-${n-1}">Back to part ${n-1}</a>`:`<a class="btn ghost" href="#home">Back to home</a>`}${n<6?`<a class="btn ghost" href="#part-${n+1}">Go to part ${n+1}</a>`:`<a class="btn ghost" href="#cases">Go to the case studies</a>`}</nav>`;
+  mountPlayer(p);partQuiz(p);
+}
+function recordAttempt(bucket,n,sc,total,key){const m=bucket[n]||(bucket[n]={attempts:0});m.attempts=(m.attempts||0)+1;m.last=sc;m.total=total;if(!m.completedAt){m.completedAt=nowISO();}if(!m.first){m.first=(store.answers[key]||[]).slice();m.firstScore=sc;}}
+
+function ord(key,i,n){let h=2166136261;for(const ch of String(key)+":"+i){h^=ch.charCodeAt(0);h=Math.imul(h,16777619);}
+  const a=[...Array(n).keys()];for(let k=n-1;k>0;k--){h=Math.imul(h^(h>>>15),2246822507)>>>0;const r=h%(k+1);[a[k],a[r]]=[a[r],a[k]];}return a;}
+function renderQuiz(cfg){
+  const ans=store.answers[cfg.key]||[];const box=cfg.box;const quiz=cfg.quiz;
+  const allDone=quiz.every((_,i)=>ans[i]!=null);
+  box.innerHTML=quiz.map((q,i)=>{const a=ans[i];const answered=a!=null;
+    return `<div class="q" role="group" aria-labelledby="q${cfg.key}-${i}"><p class="qt" id="q${cfg.key}-${i}"><span class="qn">${i+1}.</span>${q.q}</p><div class="opts">${ord(cfg.key,i,q.o.length).map(j=>{const o=q.o[j];let cls="";if(answered){if(j===q.a)cls="right";else if(j===a)cls="wrong";}return `<button type="button" class="opt ${cls}" data-q="${i}" data-o="${j}" ${answered?"disabled":""}>${o}</button>`}).join("")}</div>${answered?`<p class="fb ${a===q.a?"":"no"}" role="status"><strong>${a===q.a?"Correct.":"Not quite."}</strong> ${q.e}</p>`:""}</div>`}).join("")+
+    (allDone?(()=>{const sc=quiz.filter((q,i)=>ans[i]===q.a).length;
+      return `<div class="result" role="status"><p><b>You got ${sc} of ${quiz.length}.</b> ${sc===quiz.length?"Clean sweep.":"Review the explanations above, or retake it."} ${cfg.doneText}</p><div class="row">${cfg.next}<button type="button" class="btn ghost" data-retake="1">Retake the questions</button></div></div>`})():"");
+  box.onclick=e=>{
+    const b=e.target.closest(".opt");
+    if(b&&!b.disabled){const qi=+b.dataset.q,oi=+b.dataset.o;const a=store.answers[cfg.key]||(store.answers[cfg.key]=[]);a[qi]=oi;
+      if(quiz.every((_,i)=>a[i]!=null)){cfg.complete(quiz.filter((q,i)=>a[i]===q.a).length);}
+      save();renderQuiz(cfg);renderRail(cfg.view);const qsEl=box.querySelectorAll(".q");const nxt=qsEl[qi+1];
+      const f=(nxt&&nxt.querySelector(".opt:not(:disabled)"))||box.querySelector(".result .btn")||qsEl[qi].querySelector(".opt");if(f)f.focus();return;}
+    if(e.target.closest("[data-retake]")){store.answers[cfg.key]=[];save();renderQuiz(cfg);const f=box.querySelector(".opt");if(f)f.focus();}
+  };
+}
+
+function partQuiz(p){
+  renderQuiz({key:p.n,quiz:p.quiz,box:document.getElementById("quiz"),view:"part-"+p.n,doneText:`Course ${p.n} is on the roof.`,
+    next:p.n<6?`<a class="btn" href="#part-${p.n+1}">Go to part ${p.n+1}</a>`:`<a class="btn" href="#cases">Try the case studies</a>`,
+    complete:sc=>{store.done[p.n]=true;store.best[p.n]=Math.max(store.best[p.n]||0,sc);recordAttempt(store.meta.parts,p.n,sc,p.quiz.length,p.n);}});
+}
+
+function renderCases(){
+  main.innerHTML=`<header class="phead"><p class="pnum">Case studies</p><h1>Put it to work.</h1><p class="lede">Four fictional roofing companies facing situations we see in real implementations. Read the brief, answer the questions, then try the open exercise and compare with a model answer.</p></header>
+  <ol class="outline">${CASES.map(c=>`<li><button type="button" data-go="case-${c.n}"><em>Case ${c.n}${store.cases[c.n]!=null?` · done, ${store.cases[c.n]}/${c.quiz.length}`:""}</em><b>${c.name}</b><span>${c.tag}</span><em>${c.quiz.length} questions and an open exercise</em></button></li>`).join("")}</ol>
+  <p class="tip">Best after finishing the six parts, but you can start any time.</p>`;
+}
+
+function renderCase(n){
+  const c=CASES[n-1];const nk="c"+n;
+  main.innerHTML=`<header class="phead"><p class="pnum">Case study ${n} of ${CASES.length}</p><h1>${c.name}</h1><p class="lede">${c.tag}. A fictional company.</p></header>
+  <section class="brief" aria-label="Client brief"><dl class="facts">${c.facts.map(([k,v])=>`<div><dt>${k}</dt><dd>${v}</dd></div>`).join("")}</dl><p class="situation">${c.situation}</p></section>
+  <section class="check" style="margin-top:36px" aria-labelledby="cqh"><h2 id="cqh">What would you do?</h2><p class="lede">${c.quiz.length} questions. Each answer explains the reasoning.</p><div id="quiz"></div></section>
+  <section class="yourturn" aria-labelledby="yt${n}"><label id="yt${n}" for="note${n}">Your turn: ${c.open.prompt}</label><textarea id="note${n}" placeholder="Write your answer here.${SY.mode==="remote"?" Your lead can read it.":""}"></textarea><p class="saved" id="saved${n}" aria-live="polite"></p><details><summary>Compare with a model answer</summary><ul>${c.open.model.map(m=>`<li>${m}</li>`).join("")}</ul></details></section>
+  <nav class="pager" aria-label="Case navigation">${n>1?`<a class="btn ghost" href="#case-${n-1}">Back to case ${n-1}</a>`:`<a class="btn ghost" href="#cases">All case studies</a>`}${n<CASES.length?`<a class="btn ghost" href="#case-${n+1}">Go to case ${n+1}</a>`:`<a class="btn ghost" href="#finish">See my progress</a>`}</nav>`;
+  renderQuiz({key:nk,quiz:c.quiz,box:document.getElementById("quiz"),view:"case-"+n,doneText:`Case ${n} is complete.`,
+    next:n<CASES.length?`<a class="btn" href="#case-${n+1}">Go to case ${n+1}</a>`:`<a class="btn" href="#finish">See my progress</a>`,
+    complete:sc=>{store.cases[n]=Math.max(store.cases[n]||0,sc);recordAttempt(store.meta.cases,n,sc,c.quiz.length,nk);}});
+  const ta=document.getElementById("note"+n),sv=document.getElementById("saved"+n);let t;
+  ta.value=store.notes[nk]||"";
+  ta.oninput=()=>{clearTimeout(t);sv.textContent="";t=setTimeout(()=>{store.notes[nk]=ta.value.slice(0,8000);save();sv.textContent=SY.mode==="remote"?"Saved. Your lead can read this answer.":"Saved on this device.";},800);};
+}
+
+const fmtDate=iso=>{if(!iso)return "–";const d=new Date(iso);return isNaN(d)?"–":d.toLocaleDateString(undefined,{day:"numeric",month:"short",year:"numeric"});};
+function ago(iso){if(!iso)return "Never";const s=(Date.now()-new Date(iso).getTime())/1000;if(isNaN(s))return "–";if(s<90)return "Just now";if(s<3600)return Math.round(s/60)+" min ago";if(s<86400)return Math.round(s/3600)+" h ago";const d=Math.round(s/86400);return d===1?"Yesterday":d+" days ago";}
+function stats(st){
+  const pd=PARTS.filter(p=>st.done[p.n]).length,cd=CASES.filter(c=>st.cases[c.n]!=null).length;
+  const fr=[];PARTS.forEach(p=>{if(st.done[p.n])fr.push((st.best[p.n]||0)/p.quiz.length);});CASES.forEach(c=>{if(st.cases[c.n]!=null)fr.push(st.cases[c.n]/c.quiz.length);});
+  const avg=fr.length?Math.round(fr.reduce((a,b)=>a+b,0)/fr.length*100):null;
+  const watched=PARTS.filter(p=>st.meta.watched[p.n]).length;
+  const any=pd||cd||watched||Object.keys(st.answers).length;
+  const status=pd===6?"Completed":any?"In progress":"Not started";
+  let weak=null;PARTS.forEach(p=>{if(st.done[p.n]){const f=(st.best[p.n]||0)/p.quiz.length;if(!weak||f<weak.f)weak={n:p.n,f};}});
+  return {pd,cd,avg,watched,status,weak,last:st.meta.updatedAt,started:st.meta.startedAt};
+}
+function renderFinish(){
+  const s=stats(store);const n=s.pd;
+  const share=store.meta.reviewer&&ME.canEdit?`<p class="note ok">You’re set up as a reviewer, so you aren’t counted as a learner on the team dashboard. To change this, use “Edit my details”.</p>`:SY.mode==="remote"?`<p class="note ok">Your lead and HR can see these scores and your written case answers.</p>`:SY.mode==="readonly"?`<p class="note warn">You have view-only access, so your progress isn’t shared with your lead. Contact the Academy owner.</p>`:`<p class="note warn">Your progress is saved in this browser only, so your lead can’t see it. Sign in again to save your progress.</p>`;
+  main.innerHTML=`<header class="phead"><p class="pnum">My progress</p><h1>${n===6?"The roof is on.":`${n} of 6 courses laid.`}</h1><p class="lede">${n===6?"You’ve finished every part. Keep the case studies and reference handy.":"Pick up where you left off, or revisit any part to improve your score."}</p></header>
+  ${share}
+  <div class="kpis"><div><b>${s.pd}/6</b><span>Parts complete</span></div><div><b>${s.cd}/${CASES.length}</b><span>Case studies</span></div><div><b>${s.avg==null?"–":s.avg+"%"}</b><span>Average score</span></div><div><b>${s.watched}/6</b><span>Lessons watched</span></div></div>
+  <div class="mygrid"><div><h2>Training parts</h2><table class="reftable" style="margin-top:12px"><thead><tr><th scope="col">Part</th><th scope="col">Lesson</th><th scope="col">Best</th><th scope="col">Attempts</th><th scope="col">Completed</th></tr></thead><tbody>${PARTS.map(p=>{const m=store.meta.parts[p.n]||{};return `<tr><td><a href="#part-${p.n}">${p.n}. ${p.title}</a></td><td>${store.meta.watched[p.n]?"Watched":"–"}</td><td>${store.done[p.n]?`${store.best[p.n]}/${p.quiz.length}`:"–"}</td><td>${m.attempts||"–"}</td><td>${fmtDate(m.completedAt)}</td></tr>`}).join("")}</tbody></table>
+  <h2 style="margin-top:28px">Case studies</h2><table class="reftable" style="margin-top:12px"><thead><tr><th scope="col">Case</th><th scope="col">Best</th><th scope="col">Attempts</th><th scope="col">Written answer</th></tr></thead><tbody>${CASES.map(c=>{const m=store.meta.cases[c.n]||{};return `<tr><td><a href="#case-${c.n}">${c.n}. ${c.name}</a></td><td>${store.cases[c.n]!=null?`${store.cases[c.n]}/${c.quiz.length}`:"–"}</td><td>${m.attempts||"–"}</td><td>${store.notes["c"+c.n]?"Written":"–"}</td></tr>`}).join("")}</tbody></table></div>
+  <aside class="mycard"><div style="max-width:300px;margin:0 auto">${roofSVG(0)}</div><dl class="facts" style="margin-top:8px"><div><dt>Role</dt><dd>${esc(store.meta.role)||"Not set"}</dd></div><div><dt>Cohort</dt><dd>${esc(store.meta.cohort)||"Not set"}</dd></div><div><dt>Started</dt><dd>${fmtDate(store.meta.startedAt)}</dd></div></dl>${SY.mode==="remote"?`<button type="button" class="btn ghost" id="editProfile">Edit my details</button>`:""}<div class="row">${ctaPrimary()}</div></aside></div>`;
+  const ep=document.getElementById("editProfile");if(ep)ep.onclick=()=>openWelcome(false);
+}
+
+/* ---------------- team dashboard ---------------- */
+const TEAM={unsub:null,docs:[],ps:{},loaded:false,err:"",timer:null,sort:"last",dir:-1,q:"",role:"",cohort:"",status:"",dl:null};
+cu("downloads").then(d=>{TEAM.dl=d;});
+function teamRows(){return TEAM.docs.filter(d=>!d.st.meta.reviewer).map(d=>{const st=d.st;const s=stats(st);const p=TEAM.ps[d.id]||{};return {id:d.id,st,s,name:p.name||"Unnamed learner",email:p.email||"",avatar:p.avatarUrl||"",role:st.meta.role||"",cohort:st.meta.cohort||""};});}
+function startTeam(){
+  if(TEAM.unsub||!ME.db)return;
+  TEAM.loaded=false;TEAM.err="";clearTimeout(TEAM.timer);TEAM.timer=setTimeout(()=>{if(!TEAM.loaded){TEAM.err="Still connecting to the progress data…";paintTeam();}},10000);
+  try{TEAM.unsub=ME.db.collection("progress").onSnapshot(async snap=>{
+      TEAM.docs=snap.docs.filter(d=>d.exists).map(d=>({id:d.id,st:normalize(d.data())}));
+      if(!snap.metadata.fromCache){TEAM.loaded=true;clearTimeout(TEAM.timer);TEAM.err="";}
+      else if(TEAM.docs.length)TEAM.loaded=true;
+      const ids=TEAM.docs.map(d=>d.id);
+      if(ME.user&&ids.length){try{TEAM.ps=await ME.user.profiles(ids)||{};}catch(e){}}
+      if(curView()==="team")paintTeam();
+    },e=>{TEAM.err=e&&e.code==="revoked"?"Access to the progress data was withdrawn.":"The progress data couldn’t be loaded.";TEAM.unsub=null;clearTimeout(TEAM.timer);if(curView()==="team")paintTeam();});
+  }catch(e){TEAM.err="The progress data couldn’t be loaded.";}
+}
+function stopTeam(){if(TEAM.unsub){TEAM.unsub();TEAM.unsub=null;}clearTimeout(TEAM.timer);}
+function renderTeam(){
+  if(!ME.ready){main.innerHTML=`<section class="band"><div class="wrap"><p class="lede">Checking your access…</p></div></section>`;return;}
+  if(!ME.canEdit||!ME.db){main.innerHTML=`<section class="band"><div class="wrap"><header class="phead"><p class="pnum">Team dashboard</p><h1>For leads and HR</h1><p class="lede">The team dashboard is available to leads and HR on the staff list. Ask the Academy owner if you need access.</p></header><a class="btn" href="#home">Back to home</a></div></section>`;return;}
+  main.innerHTML=`<section class="band" style="padding-top:44px"><div class="wrap">
+   <header class="phead" style="margin-bottom:22px"><p class="pnum">Team dashboard</p><h1>Learner progress</h1><p class="lede">Live progress for everyone who has opened the Academy. Scores are each learner’s best attempt.</p></header>
+   <div id="teamKpis" class="kpis"></div>
+   <div class="toolbar"><label class="srch"><span class="sr">Search learners</span><input id="tQ" type="search" placeholder="Search by name or email" value="${esc(TEAM.q)}"></label>
+    <label><span class="sr">Role</span><select id="tRole"></select></label><label><span class="sr">Cohort</span><select id="tCohort"></select></label>
+    <label><span class="sr">Status</span><select id="tStatus"><option value="">All statuses</option><option>Not started</option><option>In progress</option><option>Completed</option></select></label>
+    <span class="grow1"></span>${TEAM.dl?`<button type="button" class="btn ghost" id="tCsv">Export CSV</button>`:""}</div>
+   <div id="teamTable"></div>
+   <div class="duo" style="margin-top:36px"><div class="feature"><h3>Average best score by part</h3><div id="teamParts"></div></div><div class="feature"><h3>Hardest questions</h3><p>First-attempt accuracy across the team. Good topics for coaching.</p><div id="teamHard"></div></div></div>
+   <p class="tip">Leads and HR see this dashboard once their email is on the staff list in Supabase.</p>
+  </div></section>`;
+  document.getElementById("tStatus").value=TEAM.status;
+  document.getElementById("tQ").oninput=e=>{TEAM.q=e.target.value;paintTeam(true);};
+  document.getElementById("tRole").onchange=e=>{TEAM.role=e.target.value;paintTeam(true);};
+  document.getElementById("tCohort").onchange=e=>{TEAM.cohort=e.target.value;paintTeam(true);};
+  document.getElementById("tStatus").onchange=e=>{TEAM.status=e.target.value;paintTeam(true);};
+  const csv=document.getElementById("tCsv");if(csv)csv.onclick=exportCsv;
+  startTeam();paintTeam();
+}
+function filtered(){const q=TEAM.q.trim().toLowerCase();return teamRows().filter(r=>(!q||(r.name+" "+r.email).toLowerCase().includes(q))&&(!TEAM.role||r.role===TEAM.role)&&(!TEAM.cohort||r.cohort===TEAM.cohort)&&(!TEAM.status||r.s.status===TEAM.status));}
+function paintTeam(onlyTable){
+  const tt=document.getElementById("teamTable");if(!tt)return;
+  const all=teamRows();
+  if(!onlyTable){
+    const roles=[...new Set(all.map(r=>r.role).filter(Boolean))].sort(),cohorts=[...new Set(all.map(r=>r.cohort).filter(Boolean))].sort();
+    document.getElementById("tRole").innerHTML=`<option value="">All roles</option>`+roles.map(r=>`<option ${r===TEAM.role?"selected":""}>${esc(r)}</option>`).join("");
+    document.getElementById("tCohort").innerHTML=`<option value="">All cohorts</option>`+cohorts.map(r=>`<option ${r===TEAM.cohort?"selected":""}>${esc(r)}</option>`).join("");
+    const n=all.length,comp=all.filter(r=>r.s.status==="Completed").length,avgs=all.map(r=>r.s.avg).filter(v=>v!=null);
+    const wk=all.filter(r=>r.s.last&&Date.now()-new Date(r.s.last)<7*864e5).length,stale=all.filter(r=>r.s.status!=="Completed"&&(!r.s.last||Date.now()-new Date(r.s.last)>14*864e5)).length;
+    document.getElementById("teamKpis").innerHTML=`<div><b>${n}</b><span>Learners</span></div><div><b>${comp}${n?` <small>(${Math.round(comp/n*100)}%)</small>`:""}</b><span>Completed all 6 parts</span></div><div><b>${avgs.length?Math.round(avgs.reduce((a,b)=>a+b,0)/avgs.length)+"%":"–"}</b><span>Average score</span></div><div><b>${wk}</b><span>Active in the last 7 days</span></div><div><b>${stale}</b><span>Inactive 14+ days</span></div>`;
+    paintInsights(all);
+  }
+  if(!TEAM.loaded&&!all.length){tt.innerHTML=`<p class="empty">${TEAM.err?esc(TEAM.err):"Loading progress…"}</p>`;return;}
+  if(!all.length){tt.innerHTML=`<div class="empty"><b>No learners yet.</b><p>Send new joinees the Academy link. They sign in with their work account and appear here as soon as they start.</p></div>`;return;}
+  const rows=filtered();const k=TEAM.sort,dir=TEAM.dir;
+  const val=r=>k==="name"?r.name.toLowerCase():k==="parts"?r.s.pd*10+r.s.cd:k==="avg"?(r.s.avg==null?-1:r.s.avg):k==="last"?(r.s.last||""):k==="status"?r.s.status:r.name;
+  rows.sort((a,b)=>{const x=val(a),y=val(b);return (x<y?-1:x>y?1:0)*dir;});
+  const th=(key,label)=>`<th scope="col"><button type="button" class="sortb" data-sort="${key}" aria-sort="${TEAM.sort===key?(TEAM.dir>0?"ascending":"descending"):"none"}">${label}${TEAM.sort===key?(TEAM.dir>0?" ↑":" ↓"):""}</button></th>`;
+  tt.innerHTML=(TEAM.err?`<p class="note warn">${esc(TEAM.err)}</p>`:"")+`<div class="tscroll"><table class="reftable dt"><thead><tr>${th("name","Learner")}<th scope="col">Role · cohort</th>${th("parts","Progress")}${th("avg","Avg score")}${th("last","Last active")}${th("status","Status")}</tr></thead><tbody>${rows.map(r=>`<tr class="lrow" data-id="${esc(r.id)}" tabindex="0"><td><div class="who">${r.avatar?`<img src="${esc(r.avatar)}" alt="" width="32" height="32">`:""}<div><b>${esc(r.name)}</b><span>${esc(r.email)}</span></div></div></td><td>${esc(r.role)||"–"}${r.cohort?`<span class="sub">${esc(r.cohort)}</span>`:""}</td><td><div class="pbar" aria-hidden="true"><i style="width:${Math.round(r.s.pd/6*100)}%"></i></div><span class="sub">${r.s.pd}/6 parts · ${r.s.cd}/${CASES.length} cases</span></td><td>${r.s.avg==null?"–":r.s.avg+"%"}</td><td>${ago(r.s.last)}</td><td><span class="chip ${r.s.status==="Completed"?"c-ok":r.s.status==="In progress"?"c-mid":"c-none"}">${r.s.status}</span></td></tr>`).join("")||`<tr><td colspan="6">No learners match these filters.</td></tr>`}</tbody></table></div><p class="tcount">${rows.length} of ${all.length} learners${TEAM.docs.length>all.length?` · ${TEAM.docs.length-all.length} ${TEAM.docs.length-all.length===1?"reviewer":"reviewers"} not counted`:""} · select a row for details</p>`;
+  tt.querySelectorAll(".sortb").forEach(b=>b.onclick=()=>{const s=b.dataset.sort;if(TEAM.sort===s)TEAM.dir*=-1;else{TEAM.sort=s;TEAM.dir=s==="name"?1:-1;}paintTeam(true);});
+  tt.querySelectorAll(".lrow").forEach(tr=>{tr.onclick=()=>openLearner(tr.dataset.id);tr.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();openLearner(tr.dataset.id);}};});
+}
+function paintInsights(all){
+  const pe=document.getElementById("teamParts"),he=document.getElementById("teamHard");if(!pe||!he)return;
+  pe.innerHTML=PARTS.map(p=>{const v=all.filter(r=>r.st.done[p.n]).map(r=>(r.st.best[p.n]||0)/p.quiz.length);const a=v.length?Math.round(v.reduce((x,y)=>x+y,0)/v.length*100):null;
+    return `<div class="hbar"><span>${p.n}. ${p.title}</span><div class="pbar"><i style="width:${a||0}%"></i></div><b>${a==null?"–":a+"%"}</b><em>${v.length} done</em></div>`;}).join("");
+  const qs=[];
+  const scan=(quiz,key,where,bucket,n)=>quiz.forEach((q,i)=>{let tot=0,ok=0;all.forEach(r=>{const m=r.st.meta[bucket][n];if(m&&m.first&&m.first[i]!=null){tot++;if(m.first[i]===q.a)ok++;}});if(tot)qs.push({q:q.q,where,pct:Math.round(ok/tot*100),tot});});
+  PARTS.forEach(p=>scan(p.quiz,p.n,"Part "+p.n,"parts",p.n));CASES.forEach(c=>scan(c.quiz,"c"+c.n,"Case "+c.n,"cases",c.n));
+  qs.sort((a,b)=>a.pct-b.pct||b.tot-a.tot);
+  he.innerHTML=qs.length?`<ol class="hard">${qs.slice(0,8).map(x=>`<li><span>${x.q}</span><em>${x.where} · ${x.pct}% right first time · ${x.tot} ${x.tot===1?"answer":"answers"}</em></li>`).join("")}</ol>`:`<p class="empty">Appears once learners finish their first knowledge checks.</p>`;
+}
+function openLearner(id){
+  const r=teamRows().find(x=>x.id===id);if(!r)return;const st=r.st;const d=document.getElementById("learnerDlg");
+  d.querySelector(".dlgbody").innerHTML=`<div class="who big">${r.avatar?`<img src="${esc(r.avatar)}" alt="" width="48" height="48">`:""}<div><h2>${esc(r.name)}</h2><span>${esc(r.email)}</span></div></div>
+   <dl class="facts"><div><dt>Role</dt><dd>${esc(r.role)||"–"}</dd></div><div><dt>Cohort</dt><dd>${esc(r.cohort)||"–"}</dd></div><div><dt>Started</dt><dd>${fmtDate(st.meta.startedAt)}</dd></div><div><dt>Last active</dt><dd>${ago(st.meta.updatedAt)}</dd></div><div><dt>Average score</dt><dd>${r.s.avg==null?"–":r.s.avg+"%"}</dd></div><div><dt>Status</dt><dd>${r.s.status}</dd></div></dl>
+   <h3>Training parts</h3><div class="tscroll"><table class="reftable"><thead><tr><th scope="col">Part</th><th scope="col">Lesson</th><th scope="col">Best</th><th scope="col">First try</th><th scope="col">Attempts</th><th scope="col">Completed</th></tr></thead><tbody>${PARTS.map(p=>{const m=st.meta.parts[p.n]||{};return `<tr><td>${p.n}. ${p.title}</td><td>${st.meta.watched[p.n]?"Watched":"–"}</td><td>${st.done[p.n]?`${st.best[p.n]}/${p.quiz.length}`:"–"}</td><td>${m.firstScore!=null?`${m.firstScore}/${p.quiz.length}`:"–"}</td><td>${m.attempts||"–"}</td><td>${fmtDate(m.completedAt)}</td></tr>`}).join("")}</tbody></table></div>
+   <h3>Case studies</h3><div class="tscroll"><table class="reftable"><thead><tr><th scope="col">Case</th><th scope="col">Best</th><th scope="col">First try</th><th scope="col">Attempts</th></tr></thead><tbody>${CASES.map(c=>{const m=st.meta.cases[c.n]||{};return `<tr><td>${c.n}. ${c.name}</td><td>${st.cases[c.n]!=null?`${st.cases[c.n]}/${c.quiz.length}`:"–"}</td><td>${m.firstScore!=null?`${m.firstScore}/${c.quiz.length}`:"–"}</td><td>${m.attempts||"–"}</td></tr>`}).join("")}</tbody></table></div>
+   <h3>Written case answers</h3>${CASES.map(c=>{const t=st.notes["c"+c.n];return `<div class="ans"><p class="anq"><b>${c.name}:</b> ${c.open.prompt}</p>${t?`<p class="ant">${esc(t)}</p>`:`<p class="ant none">Not written yet.</p>`}</div>`}).join("")}
+   ${ME.isOwner?`<div class="danger"><button type="button" class="btn ghost" id="delLearner">Remove this learner’s record</button></div>`:""}`;
+  const del=d.querySelector("#delLearner");if(del)del.onclick=async()=>{if(!confirm("Remove this learner’s progress record? This can’t be undone."))return;try{await ME.db.doc("progress/"+id).delete();d.close();}catch(e){alert("The record couldn’t be removed. Try again.");}};
+  try{d.showModal();}catch(e){d.setAttribute("open","");}
+}
+async function exportCsv(){
+  if(!TEAM.dl)return;
+  const rows=filtered();const q=v=>{const s=String(v==null?"":v);return /[",\n\r]/.test(s)||/^[=+\-@]/.test(s)?'"'+(/^[=+\-@]/.test(s)?"'":"")+s.replace(/"/g,'""')+'"':s;};
+  const head=["Name","Email","Role","Cohort","Status","Started","Last active","Parts complete","Cases complete","Average score %","Lessons watched",...PARTS.map(p=>`Part ${p.n} best`),...PARTS.map(p=>`Part ${p.n} attempts`),...CASES.map(c=>`Case ${c.n} best`)];
+  const lines=[head.map(q).join(",")].concat(rows.map(r=>[r.name,r.email,r.role,r.cohort,r.s.status,(r.st.meta.startedAt||"").slice(0,10),(r.st.meta.updatedAt||"").slice(0,10),r.s.pd,r.s.cd,r.s.avg==null?"":r.s.avg,r.s.watched,...PARTS.map(p=>r.st.done[p.n]?`${r.st.best[p.n]}/${p.quiz.length}`:""),...PARTS.map(p=>(r.st.meta.parts[p.n]||{}).attempts||""),...CASES.map(c=>r.st.cases[c.n]!=null?`${r.st.cases[c.n]}/${c.quiz.length}`:"")].map(q).join(",")));
+  try{await TEAM.dl.save({filename:`roofing-academy-progress-${new Date().toISOString().slice(0,10)}.csv`,data:lines.join("\r\n")});}
+  catch(e){if(!(e&&e.code==="declined"))alert("The export couldn’t be saved. Try again.");}
+}
+
+function renderView(view){
+  if(view==="home")renderHome();else if(view==="training")renderTraining();else if(view==="reference")renderReference();else if(view==="team")renderTeam();else if(view==="finish")renderFinish();else if(view==="cases")renderCases();else if(view.startsWith("case-"))renderCase(+view.slice(5));else renderPart(+view.slice(5));
+}
+function route(){
+  const view=curView();
+  stopPlayer();if(view!=="team")stopTeam();
+  renderView(view);renderRail(view);window.scrollTo(0,0);main.focus({preventScroll:true});
+}
+function refreshView(){
+  const view=curView();renderRail(view);
+  if(view.startsWith("part-")&&P){partQuiz(PARTS[+view.slice(5)-1]);return;}
+  if(view.startsWith("case-")){const ta=document.querySelector(".yourturn textarea");if(ta&&document.activeElement===ta)return;}
+  renderView(view);
+}
+document.addEventListener("click",e=>{const b=e.target.closest("[data-go]");if(b){e.preventDefault();if(location.hash==="#"+b.dataset.go)route();else location.hash=b.dataset.go;}});
+document.getElementById("resetBtn").onclick=()=>{if(confirm(SY.mode==="remote"?"Clear all your progress, answers and case notes? Your lead will see your progress reset.":"Clear your progress, answers and case notes in this browser?")){const v=store.voice,m=store.meta;store=blank();store.voice=v;store.meta.role=m.role;store.meta.cohort=m.cohort;save();route();}};
+document.querySelectorAll("dialog [data-close]").forEach(b=>b.onclick=()=>b.closest("dialog").close());
+window.addEventListener("hashchange",route);
+wireWelcome();
+setSync("loading");
+route();
+initIdentity();
+};
+</script>
+<script src="auth.js"></script>
+</body>
+</html>
