@@ -275,6 +275,8 @@ table.scores td:last-child,table.scores th:last-child{text-align:right}
 .tcount{font-size:13px;color:var(--muted);margin:8px 0 0}
 .empty{background:var(--surface);border:1px dashed var(--line);border-radius:14px;padding:24px;color:var(--muted);margin:0}
 .empty b{color:var(--ink)}
+.signins{margin-top:48px}.signins h2{font-size:30px;margin:0 0 6px}.signins .lede{margin:0 0 20px}
+.signins td .chip{margin-top:6px}
 .hbar{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) 48px 64px;gap:10px;align-items:center;font-size:14px;padding:6px 0}
 .hbar b{text-align:right}.hbar em{font-style:normal;color:var(--muted);font-size:13px}
 .hard{margin:0;padding-left:20px;display:grid;gap:10px;font-size:15px}
@@ -357,7 +359,7 @@ body.gated:has(#login:not([hidden])) .bootmsg{display:none}
   <fieldset class="fld mode" id="wModeBox" hidden><legend>How will you use the Academy?</legend><label class="radio"><input type="radio" name="wMode" value="learn" checked> I’m taking the training</label><label class="radio"><input type="radio" name="wMode" value="review"> I’m reviewing the team, not taking the training (lead, HR or leadership)</label></fieldset>
   <label class="fld" id="wRoleBox">Your role<select id="wRole" required><option value="">Choose your role</option><option>Business Analyst</option><option>Solutions Architect</option><option>Implementation Specialist</option><option>Project Manager</option><option>Customer Success</option><option>Sales</option><option>Other</option></select></label>
   <label class="fld" id="wCohortBox">Cohort or start month <span class="opt2">(optional)</span><input id="wCohort" type="text" maxlength="40" placeholder="e.g. Nov 2026"></label>
-  <p class="note ok" id="wNote" style="margin:0">Your lead and HR can see your progress, quiz scores and written case answers. Nothing else about you is stored.</p>
+  <p class="note ok" id="wNote" style="margin:0">Your lead and HR can see your progress, quiz scores and written case answers, plus when you sign in, the device you use and its IP address. Nothing else about you is stored.</p>
   <div class="row"><button type="submit" class="btn">Save and start</button><button type="button" class="btn ghost" id="wSkip">Not now</button></div>
 </form></dialog>
 <dialog id="learnerDlg" class="dlg wide" aria-label="Learner details"><div class="dlghead"><button type="button" class="btn ghost" data-close>Close</button></div><div class="dlgbody"></div></dialog>
@@ -451,7 +453,7 @@ function openWelcome(first){
 }
 function syncMode(){const rev=ME.canEdit&&document.querySelector('input[name="wMode"]:checked').value==="review";
   document.getElementById("wRoleBox").hidden=rev;document.getElementById("wCohortBox").hidden=rev;document.getElementById("wRole").required=!rev;
-  document.getElementById("wNote").textContent=rev?"You won’t appear as a learner on the team dashboard or in its averages, even if you try the lessons.":"Your lead and HR can see your progress, quiz scores and written case answers. Nothing else about you is stored.";}
+  document.getElementById("wNote").textContent=rev?"You won’t appear as a learner on the team dashboard or in its averages, even if you try the lessons.":"Your lead and HR can see your progress, quiz scores and written case answers, plus when you sign in, the device you use and its IP address. Nothing else about you is stored.";}
 function wireWelcome(){
   const d=document.getElementById("welcome");
   d.querySelectorAll('input[name="wMode"]').forEach(r=>r.onchange=syncMode);
@@ -950,11 +952,50 @@ function startTeam(){
       else if(TEAM.docs.length)TEAM.loaded=true;
       const ids=TEAM.docs.map(d=>d.id);
       if(ME.user&&ids.length){try{TEAM.ps=await ME.user.profiles(ids)||{};}catch(e){}}
-      if(curView()==="team")paintTeam();
+      if(curView()==="team"){paintTeam();paintSignins();}
     },e=>{TEAM.err=e&&e.code==="revoked"?"Access to the progress data was withdrawn.":"The progress data couldn’t be loaded.";TEAM.unsub=null;clearTimeout(TEAM.timer);if(curView()==="team")paintTeam();});
   }catch(e){TEAM.err="The progress data couldn’t be loaded.";}
 }
-function stopTeam(){if(TEAM.unsub){TEAM.unsub();TEAM.unsub=null;}clearTimeout(TEAM.timer);}
+function stopTeam(){if(TEAM.unsub){TEAM.unsub();TEAM.unsub=null;}clearTimeout(TEAM.timer);clearInterval(SIGN.timer);SIGN.timer=null;}
+
+/* ---------------- sign-in log (staff only; written by the database on every sign-in) ---------------- */
+const SIGN={rows:[],loaded:false,err:"",q:"",range:"30",timer:null,api:null,busy:false};
+const SIGN_SHOW=200;
+function uaLabel(ua){if(!ua)return "Unknown device";const b=/Edg\//.test(ua)?"Edge":/OPR\/|Opera/.test(ua)?"Opera":/Firefox\/|FxiOS/.test(ua)?"Firefox":/Chrome\/|CriOS/.test(ua)?"Chrome":/Safari\//.test(ua)?"Safari":"Browser";const o=/iPhone|iPad|iPod/.test(ua)?"iOS":/Android/.test(ua)?"Android":/Windows/.test(ua)?"Windows":/Mac OS X|Macintosh/.test(ua)?"Mac":/CrOS/.test(ua)?"ChromeOS":/Linux/.test(ua)?"Linux":"";return o?b+" on "+o:b;}
+function signDomainOk(e){const ds=((window.ACADEMY_CONFIG||{}).ALLOWED_DOMAINS||[]).map(d=>String(d).toLowerCase());if(!ds.length)return true;return ds.includes((String(e||"").split("@")[1]||"").toLowerCase());}
+function signName(r){const p=TEAM.ps[r.user_id];return p&&p.name?p.name:"";}
+function signWhen(iso){const d=new Date(iso);return isNaN(d)?"–":d.toLocaleString(undefined,{day:"numeric",month:"short",year:"numeric",hour:"numeric",minute:"2-digit"});}
+async function loadSignins(){
+  if(SIGN.busy)return;SIGN.busy=true;
+  try{
+    if(!SIGN.api)SIGN.api=await cu("signins");
+    if(!SIGN.api){SIGN.err="The sign-in log isn’t available.";}
+    else{SIGN.rows=await SIGN.api.list(5000);SIGN.loaded=true;SIGN.err="";}
+  }catch(e){SIGN.err="The sign-in log couldn’t be loaded.";}
+  SIGN.busy=false;
+  if(curView()==="team")paintSignins();
+}
+function startSignins(){loadSignins();clearInterval(SIGN.timer);SIGN.timer=setInterval(()=>{if(curView()==="team")loadSignins();},60000);}
+function signFiltered(){const q=SIGN.q.trim().toLowerCase();const cut=SIGN.range==="all"?0:Date.now()-(+SIGN.range)*864e5;return SIGN.rows.filter(r=>new Date(r.signed_in_at).getTime()>=cut&&(!q||(signName(r)+" "+r.email).toLowerCase().includes(q)));}
+function paintSignins(){
+  const box=document.getElementById("signTable"),kp=document.getElementById("signKpis");if(!box||!kp)return;
+  const now=Date.now(),wk=SIGN.rows.filter(r=>now-new Date(r.signed_in_at)<7*864e5);
+  const ppl=rs=>new Set(rs.map(r=>r.email)).size;
+  kp.innerHTML=`<div><b>${SIGN.loaded?wk.length:"–"}</b><span>Sign-ins in the last 7 days</span></div><div><b>${SIGN.loaded?ppl(wk):"–"}</b><span>People signed in, last 7 days</span></div><div><b>${SIGN.loaded?ppl(SIGN.rows):"–"}</b><span>People signed in, all time</span></div>`;
+  if(!SIGN.loaded){box.innerHTML=`<p class="empty">${SIGN.err?esc(SIGN.err):"Loading sign-ins…"}</p>`;return;}
+  const rows=signFiltered();
+  if(!rows.length){box.innerHTML=(SIGN.err?`<p class="note warn">${esc(SIGN.err)}</p>`:"")+`<p class="empty">${SIGN.rows.length?"No sign-ins match this search and time range.":"No sign-ins yet. They appear here as soon as someone signs in."}</p>`;return;}
+  const shown=rows.slice(0,SIGN_SHOW);
+  box.innerHTML=(SIGN.err?`<p class="note warn">${esc(SIGN.err)}</p>`:"")+`<div class="tscroll"><table class="reftable dt"><thead><tr><th scope="col">Person</th><th scope="col">Signed in</th><th scope="col">Device</th><th scope="col">IP address</th></tr></thead><tbody>${shown.map(r=>{const n=signName(r);return `<tr><td><div class="who"><div><b>${esc(n||r.email.split("@")[0])}</b><span>${esc(r.email)}</span></div></div>${signDomainOk(r.email)?"":`<span class="chip c-mid">Other domain · signed out</span>`}</td><td>${esc(signWhen(r.signed_in_at))}<span class="sub">${ago(r.signed_in_at)}</span></td><td>${esc(uaLabel(r.user_agent))}</td><td>${esc(r.ip||"–")}</td></tr>`;}).join("")}</tbody></table></div><p class="tcount">${rows.length>SIGN_SHOW?`Showing the newest ${SIGN_SHOW} of ${rows.length} sign-ins. Download the CSV for all of them.`:`${rows.length} ${rows.length===1?"sign-in":"sign-ins"}`}</p>`;
+}
+async function exportSignins(){
+  if(!TEAM.dl)return;
+  const q=v=>{const s=String(v==null?"":v);return /[",\n\r]/.test(s)||/^[=+\-@]/.test(s)?'"'+(/^[=+\-@]/.test(s)?"'":"")+s.replace(/"/g,'""')+'"':s;};
+  const head=["Name","Email","Signed in (UTC)","Signed in (local)","Device","IP address","Allowed domain","Browser details"];
+  const lines=[head.map(q).join(",")].concat(signFiltered().map(r=>[signName(r),r.email,r.signed_in_at,signWhen(r.signed_in_at),uaLabel(r.user_agent),r.ip||"",signDomainOk(r.email)?"Yes":"No",r.user_agent||""].map(q).join(",")));
+  try{await TEAM.dl.save({filename:`roofing-academy-sign-ins-${new Date().toISOString().slice(0,10)}.csv`,data:lines.join("\r\n")});}
+  catch(e){if(!(e&&e.code==="declined"))alert("The export couldn’t be saved. Try again.");}
+}
 function renderTeam(){
   if(!ME.ready){main.innerHTML=`<section class="band"><div class="wrap"><p class="lede">Checking your access…</p></div></section>`;return;}
   if(!ME.canEdit||!ME.db){main.innerHTML=`<section class="band"><div class="wrap"><header class="phead"><p class="pnum">Team dashboard</p><h1>For leads and HR</h1><p class="lede">The team dashboard is available to leads and HR on the staff list. Ask the Academy owner if you need access.</p></header><a class="btn" href="#home">Back to home</a></div></section>`;return;}
@@ -967,8 +1008,19 @@ function renderTeam(){
     <span class="grow1"></span>${TEAM.dl?`<button type="button" class="btn ghost" id="tCsv">Export CSV</button>`:""}</div>
    <div id="teamTable"></div>
    <div class="duo" style="margin-top:36px"><div class="feature"><h3>Average best score by part</h3><div id="teamParts"></div></div><div class="feature"><h3>Hardest questions</h3><p>First-attempt accuracy across the team. Good topics for coaching.</p><div id="teamHard"></div></div></div>
+   <section class="signins" aria-labelledby="signH"><h2 id="signH">Sign-ins</h2><p class="lede">Every sign-in to the Academy, newest first, with the device and IP address used. Includes people from other domains, who are signed straight out.</p>
+    <div id="signKpis" class="kpis"></div>
+    <div class="toolbar"><label class="srch"><span class="sr">Search sign-ins</span><input id="sQ" type="search" placeholder="Search by name or email" value="${esc(SIGN.q)}"></label>
+     <label><span class="sr">Time range</span><select id="sRange"><option value="7">Last 7 days</option><option value="30">Last 30 days</option><option value="all">All time</option></select></label>
+     <span class="grow1"></span>${TEAM.dl?`<button type="button" class="btn ghost" id="sCsv">Download sign-ins (CSV)</button>`:""}</div>
+    <div id="signTable"></div></section>
    <p class="tip">Leads and HR see this dashboard once their email is on the staff list in Supabase.</p>
   </div></section>`;
+  document.getElementById("sRange").value=SIGN.range;
+  document.getElementById("sQ").oninput=e=>{SIGN.q=e.target.value;paintSignins();};
+  document.getElementById("sRange").onchange=e=>{SIGN.range=e.target.value;paintSignins();};
+  const scsv=document.getElementById("sCsv");if(scsv)scsv.onclick=exportSignins;
+  startSignins();
   document.getElementById("tStatus").value=TEAM.status;
   document.getElementById("tQ").oninput=e=>{TEAM.q=e.target.value;paintTeam(true);};
   document.getElementById("tRole").onchange=e=>{TEAM.role=e.target.value;paintTeam(true);};
@@ -1013,7 +1065,7 @@ function paintInsights(all){
 function openLearner(id){
   const r=teamRows().find(x=>x.id===id);if(!r)return;const st=r.st;const d=document.getElementById("learnerDlg");
   d.querySelector(".dlgbody").innerHTML=`<div class="who big">${r.avatar?`<img src="${esc(r.avatar)}" alt="" width="48" height="48">`:""}<div><h2>${esc(r.name)}</h2><span>${esc(r.email)}</span></div></div>
-   <dl class="facts"><div><dt>Role</dt><dd>${esc(r.role)||"–"}</dd></div><div><dt>Cohort</dt><dd>${esc(r.cohort)||"–"}</dd></div><div><dt>Started</dt><dd>${fmtDate(st.meta.startedAt)}</dd></div><div><dt>Last active</dt><dd>${ago(st.meta.updatedAt)}</dd></div><div><dt>Average score</dt><dd>${r.s.avg==null?"–":r.s.avg+"%"}</dd></div><div><dt>Status</dt><dd>${r.s.status}</dd></div></dl>
+   <dl class="facts"><div><dt>Role</dt><dd>${esc(r.role)||"–"}</dd></div><div><dt>Cohort</dt><dd>${esc(r.cohort)||"–"}</dd></div><div><dt>Started</dt><dd>${fmtDate(st.meta.startedAt)}</dd></div><div><dt>Last active</dt><dd>${ago(st.meta.updatedAt)}</dd></div><div><dt>Average score</dt><dd>${r.s.avg==null?"–":r.s.avg+"%"}</dd></div><div><dt>Status</dt><dd>${r.s.status}</dd></div>${(()=>{const mine=SIGN.rows.filter(x=>x.user_id===id);return SIGN.loaded?`<div><dt>Sign-ins</dt><dd>${mine.length}</dd></div><div><dt>Last sign-in</dt><dd>${mine.length?esc(signWhen(mine[0].signed_in_at)):"Never"}</dd></div>`:"";})()}</dl>
    <h3>Training parts</h3><div class="tscroll"><table class="reftable"><thead><tr><th scope="col">Part</th><th scope="col">Lesson</th><th scope="col">Best</th><th scope="col">First try</th><th scope="col">Attempts</th><th scope="col">Completed</th></tr></thead><tbody>${PARTS.map(p=>{const m=st.meta.parts[p.n]||{};return `<tr><td>${p.n}. ${p.title}</td><td>${st.meta.watched[p.n]?"Watched":"–"}</td><td>${st.done[p.n]?`${st.best[p.n]}/${p.quiz.length}`:"–"}</td><td>${m.firstScore!=null?`${m.firstScore}/${p.quiz.length}`:"–"}</td><td>${m.attempts||"–"}</td><td>${fmtDate(m.completedAt)}</td></tr>`}).join("")}</tbody></table></div>
    <h3>Case studies</h3><div class="tscroll"><table class="reftable"><thead><tr><th scope="col">Case</th><th scope="col">Best</th><th scope="col">First try</th><th scope="col">Attempts</th></tr></thead><tbody>${CASES.map(c=>{const m=st.meta.cases[c.n]||{};return `<tr><td>${c.n}. ${c.name}</td><td>${st.cases[c.n]!=null?`${st.cases[c.n]}/${c.quiz.length}`:"–"}</td><td>${m.firstScore!=null?`${m.firstScore}/${c.quiz.length}`:"–"}</td><td>${m.attempts||"–"}</td></tr>`}).join("")}</tbody></table></div>
    <h3>Written case answers</h3>${CASES.map(c=>{const t=st.notes["c"+c.n];return `<div class="ans"><p class="anq"><b>${c.name}:</b> ${c.open.prompt}</p>${t?`<p class="ant">${esc(t)}</p>`:`<p class="ant none">Not written yet.</p>`}</div>`}).join("")}

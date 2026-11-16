@@ -103,6 +103,19 @@
     };
   }
 
+  /* Sign-in log (public.sign_ins). Written by a database trigger on every new
+     session; readable by staff only. Returns the newest rows first. */
+  function makeSignins() {
+    return {
+      list: async function (limit) {
+        var res = await SB.from("sign_ins").select("id,user_id,email,signed_in_at,user_agent,ip")
+          .order("signed_in_at", { ascending: false }).limit(limit || 1000);
+        if (res.error) throw mapErr(res.error);
+        return res.data || [];
+      }
+    };
+  }
+
   function makeDownloads() {
     return {
       save: async function (req) {
@@ -160,7 +173,7 @@
       msg("Sign in with your " + domains.join(" or ") + " account.", "err"); return;
     }
     SESSION = session;
-    var caps = { user: makeUser(), db: makeDb(), downloads: makeDownloads() };
+    var caps = { user: makeUser(), db: makeDb(), downloads: makeDownloads(), signins: makeSignins() };
     window.claude = { use: async function (name) { return caps[name] || null; } };
     document.body.classList.remove("gated"); $("login").hidden = true; $("bootMsg").hidden = true;
     $("whoami").textContent = session.user.email;

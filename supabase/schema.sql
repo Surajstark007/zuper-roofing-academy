@@ -100,3 +100,46 @@ insert into public.staff (email, role) values
   -- , ('lead.name@zuper.co', 'admin')
   -- , ('hr.name@zuper.co', 'admin')
 on conflict (email) do update set role = excluded.role;
+
+-- 8. Sign-in log: one row each time someone completes a sign-in (a new session is
+--    created). Written by the database itself, so it can't be skipped or edited from
+--    the browser. Leads, HR and the owner can read it on the team dashboard.
+--    Sign-ins from other domains are logged too, even though the site signs them out.
+--    Records: email, time, browser/device (user agent) and IP address.
+create table if not exists public.sign_ins (
+  id            bigint generated always as identity primary key,
+  user_id       uuid references auth.users (id) on delete set null,
+  email         text not null,
+  signed_in_at  timestamptz not null default now(),
+  user_agent    text,
+  ip            inet,
+  session_id    uuid
+);
+alter table public.sign_ins add column if not exists ip inet;
+create index if not exists sign_ins_signed_in_at on public.sign_ins (signed_in_at desc);
+create index if not exists sign_ins_user_id on public.sign_ins (user_id);
+
+alter table public.sign_ins enable row level security;
+drop policy if exists "staff read sign-ins" on public.sign_ins;
+create policy "staff read sign-ins" on public.sign_ins
+  for select to authenticated using (public.is_admin());
+revoke all on public.sign_ins from anon, authenticated;
+grant select on public.sign_ins to authenticated;
+
+create or replace function public.log_sign_in()
+returns trigger language plpgsql security definer set search_path = public as $$
+begin
+  begin
+    insert into public.sign_ins (user_id, email, signed_in_at, user_agent, ip, session_id)
+    select new.user_id, lower(u.email), coalesce(new.created_at, now()), left(new.user_agent, 400), new.ip, new.id
+    from auth.users u where u.id = new.user_id and u.email is not null;
+  exception when others then
+    null;  -- never block a sign-in because the log couldn't be written
+  end;
+  return new;
+end $$;
+revoke all on function public.log_sign_in() from public, anon, authenticated;
+
+drop trigger if exists log_sign_in on auth.sessions;
+create trigger log_sign_in after insert on auth.sessions
+  for each row execute function public.log_sign_in();

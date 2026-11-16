@@ -63,7 +63,13 @@ The rules are enforced in the database, not just the page: learners can only rea
 
 ## What's stored
 
-One row per learner in `public.progress`: their user id, email, name and avatar from their sign-in, and a JSON document with quiz answers and scores, attempts, completion dates, lessons watched, role and cohort, and their written case-study answers. Learners are told on their first visit that leads and HR can see this.
+One row per learner in `public.progress`: their user id, email, name and avatar from their sign-in, and a JSON document with quiz answers and scores, attempts, completion dates, lessons watched, role and cohort, and their written case-study answers. Learners are told on their first visit that leads and HR can see this, including the sign-in log below.
+
+### Sign-in log
+
+Every completed sign-in adds a row to `public.sign_ins`: email, time, browser/device and IP address. A database trigger on `auth.sessions` writes it, so it can't be skipped or changed from the browser, and a problem writing the log never blocks a sign-in. Sign-ins from other domains are logged too, even though the site signs those people straight out.
+
+Only staff (`admin` or `owner`) can read the log. It appears in the **Sign-ins** section of the Team dashboard (counts, a searchable list of the newest 200, and a CSV download of everything in the chosen time range), and each learner's detail view shows their sign-in count and last sign-in. Refreshing an existing session doesn't count as a new sign-in.
 
 ## Differences from the claude.ai version
 - Narration uses the browser's built-in voices (Chrome and Edge have the most natural ones). Claude's voice is only available inside claude.ai.
